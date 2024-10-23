@@ -1,0 +1,59 @@
+title = "Our team"
+layout = "default"
+url = "/team"
+==
+{% set page = demoData.pages.team %}
+{% put meta %}
+{% partial "meta/meta"
+    title = page.meta_title
+    description = page.meta_description
+    keywords = page.meta_keywords
+    og_image_1200_630 = ""
+    og_image_1200_1200 = "" %}
+{% endput %}
+{% set breadcrumbs = [
+    {'name':this.page.title,'url':'' }
+] %}
+<div class="container py-10">
+    <div class="mb-8">
+        {% partial "headline/headline"
+            cssClasses = "mb-2"
+            tag = "h1"
+            color = ""
+            size = "h1"
+            text = this.page.title %}
+        {% partial "breadcrumbs/breadcrumbs"
+            cssClasses = ""
+            breadcrumbs = breadcrumbs %}
+    </div>
+    <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {% for member in demoData.team %}
+            {% partial "card-team-member/card-team-member"
+                cssClasses = ""
+                title = member.title
+                position = member.position
+                url = "team-details"|page({ slug:"team-details" })
+                phone = member.phone
+                email = member.email
+                socials = member.socials
+                image =
+                {
+                    imgCssClasses: "",
+                    src: member.image|theme,
+                    attributes:
+                    {
+                        "alt": member.title
+                    },
+                    resize:
+                    {
+                        "width": "500",
+                        "height": "500",
+                        "mode": "crop",
+                        "extension": "",
+                        "quality": ""
+                    }
+                }
+            %}
+        {% endfor %}
+    </div>
+</div>

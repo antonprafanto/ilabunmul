@@ -1,0 +1,96 @@
+{# themedoc
+[/themedoc-section-name/]: # (Card post small)
+
+[/themedoc-section/]:
+
+### Dependencies
+* [image](#image)
+* [svg-icon](#svg-icon)
+
+### Variables
+* {string} **cssClasses** - component css class list.
+* {string} **title** - card title.
+* {string} **url** - card url.
+* {array} **image** - card preview image data:
+    * {string} **imgCssClasses** - img tag css class list.
+    * {mixed} **src** - image object or path to the image.
+    * {array} **resize** - resize options:
+        * {string} **width** - resize width.
+        * {string} **height** - resize height.
+        * {string} **mode** - resize mode (default 'crop').
+        * {string} **extension** - resize extension.
+        * {string} **quality** - resize quality (default '80').
+    * {array} **attributes** - img tag html attributes.
+
+### Usage
+{% verbatim %}
+    {% partial "card-post-small/card-post-small"
+        cssClasses = ""
+        title = "From its medieval origins to the digital era"
+        date = "October 15, 2023"
+        url = "news-details"|page({ slug:"post" })
+        image =
+        {
+            imgCssClasses: "",
+            src: "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg",
+            resize:
+            {
+                "width": "100",
+                "height": "100",
+                "mode": "crop",
+                "extension": "",
+                "quality": ""
+            },
+            attributes:
+            {
+                "alt": "From its medieval origins to the digital era"
+            }
+        }
+    %}
+{% endverbatim %}
+
+### Examples
+    {% partial "card-post-small/card-post-small"
+        cssClasses = "not-prose max-w-lg"
+        title = "From its medieval origins to the digital era"
+        date = "October 15, 2023"
+        url = "news-details"|page({ slug:"post" })
+        image =
+        {
+            imgCssClasses: "",
+            src: "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg",
+            resize:
+            {
+                "width": "100",
+                "height": "100",
+                "mode": "crop",
+                "extension": "",
+                "quality": ""
+            },
+            attributes:
+            {
+                "alt": "From its medieval origins to the digital era"
+            }
+        }
+    %}
+#}
+
+<div class="flex {{ cssClasses }}">
+    <a href="{{ url }}" class="block overflow-hidden group shrink-0">
+        {% partial "image/image"
+            cssClasses = "w-full h-auto transition group-hover:scale-125"
+            imgCssClasses = image.imgCssClasses
+            src = image.src
+            resize = image.resize
+            attributes = image.attributes %}
+    </a>
+    <div class="pl-4 flex flex-col items-start flex-auto">
+        <a href="{{ url }}" class="leading-tight mb-2 transition hover:text-primary">{{ title }}</a>
+        {% if date %}
+            <div class="italic text-sm text-gray-400 mb-2">{{ date }}</div>
+        {% endif %}
+        <a href="{{ url }}" class="text-sm flex items-center text-secondary transition group hover:text-primary"> Read more
+            {% partial "svg-icon/svg-icon" name="arrow-right" cssClasses="w-3 h-3 fill-secondary ml-2 transition group-hover:fill-primary" %}
+        </a>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+description = "Foundation 5 style guide"
+==
+<!doctype html>
+<html lang="en" class="no-js" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,user-scalable=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>{{ this.page.meta_title|default(this.page.title) }} | {{ this.theme.site_name }}</title>
+    <link rel="canonical" href="{{ ''|page }}">
+
+    <!-- Theming / branding -->
+    <meta name="theme-color" content="{{ this.theme.brand_color }}">
+    <meta name="msapplication-TileColor" content="{{ this.theme.brand_color }}">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="128x128" href="{{ 'assets/images/f5/icon.png'|theme }}">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="{{ this.theme.brand_color }}">
+    <meta name="apple-mobile-web-app-title" content="{{ this.theme.site_name }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ 'assets/images/f5/icon.png'|theme }}">
+
+    <link rel="shortcut icon" href="{{ 'assets/images/f5/icon.png'|theme }}">
+
+    <script src="{{ 'assets/js/detect.js'|theme }}"></script>
+    <link rel="stylesheet" href="{{ 'assets/css/foundation553.css'|theme }}?v={{ this.theme.version }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
+    <link rel="stylesheet" href="{{ [
+        'assets/css/framework.extras.css',
+        'assets/css/styleguide.css',
+    ]|theme }}.css?v={{ this.theme.version }}">
+{% styles %}
+</head>
+<body>
+<main role="main" class="scroll-container">
+    <div class="row">
+    {% page %}
+    </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ=="></script>
+<script src="{{ 'assets/js/foundation553.js'|theme }}?v={{ this.theme.version }}"></script>
+<script src="{{ [
+    'assets/js/framework.js',
+    'assets/js/framework.extras.js',
+    'assets/js/styleguide.js',
+]|theme }}.js?v={{ this.theme.version }}"></script>
+{% scripts %}
+</body>
+</html>

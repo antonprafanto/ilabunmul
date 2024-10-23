@@ -1,0 +1,91 @@
+{#themedoc
+[/themedoc-section-name/]: # (Menu footer)
+
+[/themedoc-section/]:
+Footer navigation, compatible with StaticPages.
+
+### Dependencies
+* [svg-icon](#svg-icon)
+
+### Variables:
+* {string} **cssClasses** - list of additional css classes.
+* {int} **maxLevel** - maximum menu level (default: 10).
+* {array} **items** - array of menu items, the same as in StaticPages.
+
+### Usage example:
+{% verbatim %}
+    {% partial "menu-footer/menu-footer"
+        cssClasses = ""
+        maxLevel = 1
+        items =
+        [
+            {
+                title: "Home",
+                url: "/",
+                isActive: 0,
+                viewBag: {
+                    isExternal: 0,
+                    isHidden: 0
+                },
+                items: []
+            },
+            {
+                title: "Inner page",
+                url: "/#inner-page",
+                isActive: 0,
+                viewBag: {
+                    isExternal: 0,
+                    isHidden: 0
+                },
+                items: [
+                    {
+                        title: "Nested page",
+                        url: "/#nested-page",
+                        isActive: 0,
+                        viewBag: {
+                            isExternal: 0,
+                            isHidden: 0
+                        },
+                        items: []
+                    }
+                ]
+            }
+        ]
+    %}
+{% endverbatim %}
+#}
+
+{% set level = 1 %}
+{% set maxLevel = maxLevel|default(10) %}
+{% macro menu(items, level, maxLevel) %}
+    {% import _self as menu %}
+    {% set classUlLevel1 = 'flex flex-col items-start' %}
+    {% set classLiLevel1 = '' %}
+    {% set classALevel1 = 'block font-secondary text-white transition py-2 hover:text-primary' %}
+    {% set classUlLevel2 = '' %}
+    {% set classLiLevel2 = '' %}
+    {% set classALevel2 = '' %}
+    {% set classActive = '' %}
+    {% if items and maxLevel >= level %}
+        <ul class="{{ _context['classUlLevel'~level] }}" role="menubar">
+            {% for item in items %}
+                {% if not item.viewBag.isHidden %}
+                    <li class="{{ _context['classLiLevel'~level] }}" role="menuitem">
+                        <a class="{{ _context['classALevel'~level] }} {{ (item.isActive and level < 2) ? classActive }}" href="{{ item.url ? item.url : 'javascript:;' }}" {{ item.viewBag.isExternal ? "target=\"_blank\"" }}>
+                            {{ item.title }}
+                            {% if item.items %}
+                                {% partial "svg-icon/svg-icon" name="chevron-down" cssClasses="js-header-menu-arrow w-2 h-2 fill-default absolute bottom-1 inset-x-0 m-auto" %}
+                            {% endif %}
+                        </a>
+                        {{ menu.menu(item.items, level + 1, maxLevel) }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+{% import _self as menu %}
+
+<nav class="{{ cssClasses }}">
+    {{ menu.menu(items, level, maxLevel) }}
+</nav>

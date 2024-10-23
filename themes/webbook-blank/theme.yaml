@@ -1,0 +1,9 @@
+name: 'Blank page centered'
+description: 'Website for new project'
+author: 'webBook'
+homepage: 'webbook.page'
+authorCode: 'WebBook'
+code: 'blank'
+parent: ''
+database: '0'
+form: fields.yaml

@@ -1,0 +1,30 @@
+[viewBag]
+==
+<?php
+function onStart() {
+    $imageSettings = array();
+    $imageSettings['width'] = 640;
+    $imageSettings['widths'] = array(514, 424, 640, 460, 334, 280);
+    $imageSettings['sizes'] = '(min-width: 1200px) 514px, (min-width: 992px) 424px, (min-width: 768px) 640px, (min-width: 576px) 460px, calc(100% - 80px)';
+    
+    $this["imageSettings"] = $imageSettings;
+}
+?>
+==
+{# BLOG #}
+<section id="blog" class="space-py-8 overflow-x-hidden {{ this.theme.blog_background_color ? 'bg-primary-light' : 'bg-white' }}">
+    <div class="container position-relative">
+        <header class="space-mb-3 max-width-800">
+            <div class="section__preheading">{{ this.theme.blog_pretitle }}</div>
+            <h2 class="mb-0">{{ this.theme.blog_title }}</h2>
+        </header>
+        <div id="blogCarousel" class="blog-carousel owl-carousel owl-theme">
+            {% for post in posts %}
+                <div class="item">
+                    {% partial 'blog/post-card' article_bg_color="#{ this.theme.blog_background_color ? 'bg-white' : 'bg-primary-light' }" loading='lazy' post=post imageSettings=imageSettings %}
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{{ 'blog' | page }}" style="margin-top:2rem;" class="btn btn-link pl-0">View all posts</a>
+    </div>
+</section>

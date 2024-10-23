@@ -1,0 +1,134 @@
+{# themedoc
+[/themedoc-section-name/]: # (Card team member)
+
+[/themedoc-section/]:
+
+### Dependencies
+* [image](#image)
+* [socials](#socials)
+
+### Variables
+* {string} **cssClasses** - component css class list.
+* {string} **url** - card url.
+* {string} **title** - card title.
+* {string} **position** - job position.
+* {string} **phone** - phone number.
+* {string} **email** - email.
+* {array} **socials** - arrays where key is svg icon name and value is url of social network.
+* {array} **image** - card preview image data:
+    * {string} **imgCssClasses** - img tag css class list.
+    * {mixed} **src** - image object or path to the image.
+    * {array} **resize** - resize options:
+        * {string} **width** - resize width.
+        * {string} **height** - resize height.
+        * {string} **mode** - resize mode (default 'crop').
+        * {string} **extension** - resize extension.
+        * {string} **quality** - resize quality (default '80').
+    * {array} **attributes** - img tag html attributes.
+
+### Usage
+{% verbatim %}
+    {% partial "card-team-member/card-team-member"
+        cssClasses = ""
+        title = "Rachel Cooper"
+        position = "Property manager"
+        url = "team-details"|page({ slug:"team-details" })
+        phone = "+1 (212) 123-4567"
+        email = "team_member@site.com"
+        socials =
+        {
+            "facebook": "https://facebook.com",
+            "instagram": "https://instagram.com",
+            "twitter": "https://twitter.com"
+        }
+        image =
+        {
+            imgCssClasses: "",
+            src: "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg",
+            resize:
+            {
+                "width": "500",
+                "height": "500",
+                "mode": "crop",
+                "extension": "",
+                "quality": ""
+            },
+            attributes:
+            {
+                "alt": "Rachel Cooper"
+            }
+        }
+    %}
+{% endverbatim %}
+
+### Examples
+    {% partial "card-team-member/card-team-member"
+        cssClasses = "not-prose max-w-lg"
+        title = "Rachel Cooper"
+        position = "Property manager"
+        url = "team-details"|page({ slug:"team-details" })
+        phone = "+1 (212) 123-4567"
+        email = "team_member@site.com"
+        socials =
+        {
+            "facebook": "https://facebook.com",
+            "instagram": "https://instagram.com",
+            "twitter": "https://twitter.com"
+        }
+        image =
+        {
+            imgCssClasses: "",
+            src: "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg",
+            resize:
+            {
+                "width": "500",
+                "height": "500",
+                "mode": "crop",
+                "extension": "",
+                "quality": ""
+            },
+            attributes:
+            {
+                "alt": "Rachel Cooper"
+            }
+        }
+    %}
+#}
+
+<div class="bg-default-lightest flex flex-col {{ cssClasses }}">
+    <a href="{{ url }}" class="relative overflow-hidden group">
+        {% partial "image/image"
+            cssClasses = "w-full h-auto transition group-hover:scale-125"
+            imgCssClasses = image.imgCssClasses
+            src = image.src
+            resize = image.resize
+            attributes = image.attributes %}
+        <svg class="absolute left-0 -bottom-px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183.369 16.663">
+            <path class="fill-default-lightest" d="m100.333-105.868 45.843 79.4 45.842 79.402H8.649L54.49-26.467z" transform="matrix(1 0 0 .10493 -8.649 11.109)"/>
+        </svg>
+    </a>
+    <div class="flex flex-col items-center grow p-6">
+        <a href="{{ url }}" class="text-xl text-center mb-2 transition hover:text-primary">{{ title }}</a>
+        {% if position %}
+            <div class="grow mb-2 text-center italic font-light">{{ position }}</div>
+        {% endif %}
+        {% if phone %}
+            <a href="tel:{{ phone|replace({'(':'',')':'',' ':'','.':'','-':''}) }}" class="mb-2 text-center font-light transition hover:text-primary">{{ phone }}</a>
+        {% endif %}
+        {% if email %}
+            <a href="mailto:{{ email }}" class="mb-2 text-center font-light transition hover:text-primary">{{ email }}</a>
+        {% endif %}
+        {% if socials %}
+            <ul class="list-inside flex justify-center">
+                {% for socialCode, socialUrl in socials %}
+                    <li class="p-2">
+                        <a href="{{ socialUrl }}">
+                            {% partial "svg-icon/svg-icon" name=socialCode cssClasses="w-6 h-6 transition fill-secondary hover:fill-primary" %}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</div>
+

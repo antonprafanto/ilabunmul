@@ -1,0 +1,24 @@
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        {% partial "site/meta" %}
+        {% styles %}
+    </head>
+
+    <body class="mobile-nav-ope">
+        {% partial "layout/header" %}
+
+        <main class="content">
+            {% page %}
+        </main>
+
+        {% partial "layout/footer" %}
+
+        {% framework extras %}
+        {% scripts %}
+
+        {# AlpineJS CDN #}
+        <script src="//unpkg.com/alpinejs" defer></script>
+    </body>
+</html>

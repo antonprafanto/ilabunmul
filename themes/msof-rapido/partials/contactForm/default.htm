@@ -1,0 +1,83 @@
+{# CONTACT #}
+<section class="contact position-relative pb-0 {{ this.theme.contact_background_color ? 'bg-primary-light' : 'bg-white' }}">
+    <div class="container">
+        <form id="contact" data-aos="fade-up" data-aos-once="true" data-request="{{ __SELF__ }}::onFormSubmit" class="corner-shape-lg contact-form max-width-800 mx-auto space-p-4 {{ this.theme.contact_background_color ? 'bg-white' : 'bg-primary-light' }}">
+            <header class="text-center space-mb-3">
+                <div class="section__preheading left-0">{{ this.theme.contact_pretitle }}</div>
+                <h2>{{ this.theme.contact_title }}</h2>
+                {% if this.theme.contact_lead %}
+                    <p class="lead mb-0">{{ this.theme.contact_lead }}</p>
+                {% endif %}
+            </header>
+            {{ form_token() }}
+            <div id="{{ __SELF__ }}_forms_flash"></div>
+            <div class="hide-js">
+                <h3 class="mb-4">{{ this.theme.contact_heading_one }}</h3>
+                <div class="form-group row pt-2">
+                    <label for="inputName" class="col-sm-3 col-form-label">Name*</label>
+                    <div class="col-sm-9">
+                        <input name="name" type="text" class="form-control corner-shape-sm" id="inputName" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputCompany" class="col-sm-3 col-form-label">Company</label>
+                    <div class="col-sm-9">
+                        <input name="company" type="text" class="form-control corner-shape-sm" id="inputCompany">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputEmail" class="col-sm-3 col-form-label">Email address*</label>
+                    <div class="col-sm-9">
+                        <input name="email" type="email" class="form-control corner-shape-sm" id="inputEmail" required>
+                    </div>
+                </div>
+                <div class="form-group row pb-0 pb-sm-2">
+                    <label for="inputPhone" class="col-sm-3 col-form-label">Phone</label>
+                    <div class="col-sm-9">
+                        <input name="phone" type="text" class="form-control corner-shape-sm" id="inputPhone">
+                    </div>
+                </div>
+            </div>
+            <div class="hide-js">
+                <h3 class="my-4">{{ this.theme.contact_heading_two }}</h3>
+                <fieldset class="form-group mb-0">
+                    <div class="row">
+                        <label class="col-form-label col-sm-3 mb-2">Service*</label>
+                        <div class="col-sm-9">
+                            {% for item in this.theme.contact_repeater %}
+                                <div class="custom-control custom-radio py-2 {{ loop.last ? 'py-sm-2' : '' }}">
+                                    <input class="custom-control-input" type="radio" name="service" id="service{{ loop.index }}" value="{{ item.name }}" {{ loop.first ? 'required' : '' }}>
+                                    <label class="custom-control-label" for="service{{ loop.index }}">
+                                        {{ item.name }}
+                                    </label>
+                                </div>
+                            {% endfor %}    
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="hide-js">
+                <h3 class="my-4">{{ this.theme.contact_heading_three }}</h3>
+                <div class="form-group row">
+                    <label for="inputBrief" class="col-sm-3 col-form-label">Brief*</label>
+                    <div class="col-sm-9">
+                        <textarea name="message" class="form-control mt-sm-2 corner-shape-sm" id="inputBrief" rows="4" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label"></label>
+                    <div class="col-sm-9">
+                        <div class="custom-control custom-checkbox">
+                            <input name="consent" type="checkbox" class="custom-control-input" id="inputConsent" required>
+                            <label class="custom-control-label" for="inputConsent">I consent to have this website collect my submitted information so they can respond to my inquiry. I have read and accept the <a target="_blank" href="{{ 'privacy-policy'|page }}">Privacy Policy</a>.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-accent hide-js"><i class="fas fa-paper-plane"></i> Submit</button>
+        </form>
+    </div>
+    <figure class="contact-figure">
+        {% partial "vectors/slope" %}
+    </figure>
+</section>

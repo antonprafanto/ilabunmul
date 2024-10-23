@@ -1,0 +1,102 @@
+{#themedoc
+[/themedoc-section-name/]: # (Footer)
+
+[/themedoc-section/]:
+Site footer.
+
+### Dependencies
+* [menu-footer](#menu-footer)
+* [svg-icon](#svg-icon)
+
+### Variables:
+* {string} **cssClasses** - list of additional css classes.
+
+### Usage example:
+{% verbatim %}
+    {% partial "footer/footer"
+        cssClasses = ""
+    %}
+{% endverbatim %}
+#}
+
+{% set footerNavigation = demoData.navigation.footer %}
+
+<footer class="{{ cssClasses }}">
+    <div class="bg-secondary">
+        <div class="container py-10 grid gap-8 grid-cols-1 md:grid-cols-3">
+            <div class="">
+                <div class="text-2xl uppercase font-medium text-white mb-4 md:mb-8">Quick links</div>
+                {% partial "menu-footer/menu-footer"
+                    cssClasses = ""
+                    maxLevel = 1
+                    items = footerNavigation %}
+            </div>
+            <div class="">
+                <div class="text-2xl uppercase font-medium text-white mb-4 md:mb-8">Contact us</div>
+                <div class="mb-8">
+                    {% for contact in this.theme.contact_addresses %}
+                        <div class="relative text-white font-medium flex flex-wrap items-center pl-8 mb-2 last:mb-0 xl:pl-12">
+                            {% if loop.first %}
+                                {% partial "svg-icon/svg-icon" name="pin-filled" cssClasses="absolute left-0 top-0 w-4 h-6 fill-primary" %}
+                            {% endif %}
+                            {{ contact.address|raw }}
+                            {% if contact.description %}
+                                <div class="text-sm font-light ml-1">({{ contact.description }})</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mb-8">
+                    {% for contact in this.theme.contact_phones %}
+                        <div class="relative text-white font-medium flex flex-wrap items-center pl-8 mb-2 last:mb-0 xl:pl-12">
+                            {% if loop.first %}
+                                {% partial "svg-icon/svg-icon" name="mobile" cssClasses="absolute left-0 top-0 w-4 h-6 fill-primary" %}
+                            {% endif %}
+                            <a href="tel:{{ contact.phone|replace({'(':'',')':'',' ':'','.':'','-':''}) }}" class="transition hover:text-primary truncate">{{ contact.phone }}</a>
+                            {% if contact.description %}
+                                <div class="text-sm font-light ml-1">({{ contact.description }})</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="mb-8">
+                    {% for contact in this.theme.contact_emails %}
+                        <div class="relative text-white font-medium flex flex-wrap items-center pl-8 mb-2 last:mb-0 xl:pl-12">
+                            {% if loop.first %}
+                                {% partial "svg-icon/svg-icon" name="email-filled" cssClasses="absolute left-0 top-0 w-5 h-5 fill-primary" %}
+                            {% endif %}
+                            <a href="mailto:{{ contact.email }}" class="transition hover:text-primary truncate">{{ contact.email }}</a>
+                            {% if contact.description %}
+                                <div class="text-sm font-light ml-1">({{ contact.description }})</div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="">
+                <div class="text-2xl uppercase font-medium text-white mb-4 md:mb-8">About</div>
+                <div class="prose text-white">
+                    Experience the difference with our trusted real estate company. Our team of experts is dedicated to providing top-notch service and personalized solutions to help you achieve your real estate goals. Let us guide you every step of the way towards your dream home or investment property.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-secondary-dark">
+        <div class="container py-6">
+            <div class="flex flex-col items-center sm:flex-row sm:justify-between">
+                <div class="text-white text-center lg:text-left">{{ 'now'|date('Y') }} © {{ this.theme.copyright }}</div>
+                {% if this.theme.socials %}
+                    <ul class="list-inside flex justify-center">
+                        {% for social in this.theme.socials %}
+                            <li class="p-2">
+                                <a href="{{ social.url }}">
+                                    {% partial "svg-icon/svg-icon" name=social.code cssClasses="w-6 h-6 transition fill-white hover:fill-primary" %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</footer>

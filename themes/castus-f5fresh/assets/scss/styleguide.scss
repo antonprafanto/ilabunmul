@@ -1,0 +1,40 @@
+// Configuration and mixins
+@import "settings553";
+//@import "foundation/components/global";
+@import "sgsettings";
+
+body {
+    padding-top: rem-calc(25);
+}
+
+h2 {
+    font-weight: 600;
+}
+
+a.active {
+    color: $acti-color;
+}
+
+
+pre {
+    margin-bottom: rem-calc(15);
+
+    code .code-container {
+        margin: rem-calc(10 0);
+        padding: rem-calc(5);
+        overflow-x: auto;
+        line-height: 1.25rem;
+        font-weight: normal;
+    }
+}
+
+
+/* Responsive breakpoints */
+
+@media #{$small-only} {
+
+    ul.inline-list li {
+        padding: rem-calc(5);
+    }
+
+}

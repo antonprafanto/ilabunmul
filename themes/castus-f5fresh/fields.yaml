@@ -1,0 +1,49 @@
+fields:
+    site_name:
+        span: row
+        spanClass: col-sm-9
+        label: Site name
+        default: F5fresh
+    version:
+        span: row
+        spanClass: col-sm-3
+        label: Version (build)
+        default: 220
+    brand_color:
+        span: row
+        spanClass: col-12
+        label: Site brand color
+        type: colorpicker
+        default: '#2AA6CB'
+        assetVar: 'primary-color'
+    socialinks:
+        span: row
+        spanClass: col-12
+        label: Links to social networks
+        type: repeater
+#        default:
+#            0:
+#                name: @getuikit
+#                icon: twitter
+#                link: https://twitter.com/getuikit
+#            1:
+#                name: Community
+#                icon: commenting
+#                link: https://discordapp.com/invite/NEt4Pv7
+        form:
+            fields:
+                name:
+                    span: row
+                    spanClass: col-md-4
+                    label: Name
+                    type: text
+                icon:
+                    span: row
+                    spanClass: col-md-2
+                    label: Icon
+                    type: text
+                link:
+                    span: row
+                    spanClass: col-md-6
+                    label: Link URL
+                    type: text

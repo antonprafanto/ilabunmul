@@ -1,0 +1,33 @@
+title = "About us"
+layout = "default"
+url = "/about-us"
+==
+{% set page = demoData.pages.about_us %}
+{% put meta %}
+{% partial "meta/meta"
+    title = page.meta_title
+    description = page.meta_description
+    keywords = page.meta_keywords
+    og_image_1200_630 = ""
+    og_image_1200_1200 = "" %}
+{% endput %}
+{% set breadcrumbs = [
+    {'name':page.title,'url':'' }
+] %}
+<div class="container py-10">
+    <div class="mb-8">
+        {% partial "headline/headline"
+            cssClasses = "mb-2"
+            tag = "h1"
+            color = ""
+            size = "h1"
+            text = page.title %}
+        {% partial "breadcrumbs/breadcrumbs"
+            cssClasses = ""
+            breadcrumbs = breadcrumbs
+        %}
+    </div>
+    <div class="prose">
+        {{ page.content|raw }}
+    </div>
+</div>

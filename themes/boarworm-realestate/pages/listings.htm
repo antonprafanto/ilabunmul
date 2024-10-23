@@ -1,0 +1,77 @@
+title = "Listings"
+layout = "default"
+url = "/listings"
+==
+{% set page = demoData.pages.listings %}
+{% set listings = demoData.listings %}
+{% put meta %}
+{% partial "meta/meta"
+    title = page.meta_title
+    description = page.meta_description
+    keywords = page.meta_keywords
+    og_image_1200_630 = ""
+    og_image_1200_1200 = "" %}
+{% endput %}
+{% set breadcrumbs = [
+    {'name':this.page.title,'url':'' }
+] %}
+<div class="container py-10">
+    <div class="mb-8">
+        {% partial "headline/headline"
+            cssClasses = "mb-2"
+            tag = "h1"
+            color = ""
+            size = "h1"
+            text = this.page.title %}
+        {% partial "breadcrumbs/breadcrumbs"
+            cssClasses = ""
+            breadcrumbs = breadcrumbs %}
+    </div>
+    {% partial "section-filter/section-filter"
+        cssClasses = "mb-8" %}
+    <div class="mb-12 grid gap-y-12 gap-x-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
+        {% for listing in listings %}
+            {% partial "card-listing/card-listing"
+                cssClasses = ""
+                title = listing.title
+                url = "listings-details"|page({ slug: listing.slug })
+                contract_type = listing.contract_type
+                address = listing.address
+                status = listing.status
+                price = "$"~listing.price|number_format(0,'.',',')
+                lot_size = listing.lot_size~" SqFt"
+                bedrooms = listing.bedrooms
+                bathrooms = listing.bathrooms
+                image =
+                {
+                    imgCssClasses: "",
+                    src: listing.image|theme,
+                    attributes:
+                    {
+                        "alt": listing.title
+                    },
+                    resize:
+                    {
+                        'width':'640',
+                        'height':'360',
+                        "mode": "crop",
+                        "extension": "",
+                        "quality": ""
+                    }
+                }
+            %}
+        {% endfor %}
+    </div>
+    {% partial "pagination/pagination"
+        cssClasses = ""
+        baseUrl = "listings"|page()
+        extremePagesLimit = ""
+        nearbyPagesLimit = ""
+        showPrevNext = ""
+        showFirstLast = 1
+        items =
+        {
+            "currentPage":5,
+            "lastPage":10
+        } %}
+</div>

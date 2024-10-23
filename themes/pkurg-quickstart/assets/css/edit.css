@@ -1,0 +1,13 @@
+.stretched-link::after {
+   content: none !important;
+   position: static !important;
+}
+
+.faq .faq-container .faq-item .faq-content {
+  grid-template-rows: 1fr !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  padding-top: 10px !important;
+}
+
+

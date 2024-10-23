@@ -1,0 +1,46 @@
+{% set width = imageSettings.width %}
+{% set widths = imageSettings.widths %}
+{% set sizes = imageSettings.sizes %}
+{% set imagePath = post.featured_images|first.path %}
+{% set imageDescription = post.featured_images|first.description %}
+
+<article class="elevation-1dp corner-shape-lg overflow-hidden h-100 {{ article_bg_color }}">
+    <div class="position-relative">
+        <img
+            style="width:100%;height:auto;"
+            width="16"
+            height="9"
+            src="{{ imagePath|resize(width, auto, { mode: 'exact' }) }}"
+            srcset="
+                {% for width in imageSettings.widths %}
+                    {% if not loop.last %}
+                        {{ imagePath|resize(width, auto, { mode: 'exact' }) }} {{ width }}w,
+                        {{ imagePath|resize(width*2, auto, { mode: 'exact' }) }} {{ width*2 }}w,
+                    {% else %}
+                        {{ imagePath|resize(width, auto, { mode: 'exact' }) }} {{ width }}w,
+                        {{ imagePath|resize(width*2, auto, { mode: 'exact' }) }} {{ width*2 }}w
+                    {% endif %}
+                {% endfor %}"
+            sizes="{{ sizes }}"
+            loading={{ loading }}
+            alt="{{ imageDescription }}">
+    </div>
+    <div class="card-body">
+        <div class="font-light font-small">
+            {% if post.categories.count %}
+                {% set categoryLinks = post.categories | map(c => "<a href=\"#{'blog-category'|page({ slug: c.slug })}\">#{c.name}</a>") | join(', ') %}
+
+                {{ 'rainlab.blog::lang.post.posted_byline' | trans({
+                    date: post.published_at | date('rainlab.blog::lang.post.date_format' | trans),
+                    categories: categoryLinks
+                })|raw }}
+            {% else %}
+                {{ 'rainlab.blog::lang.post.posted_byline_no_categories' | trans({
+                    date: post.published_at | date('rainlab.blog::lang.post.date_format' | trans)
+                }) }}
+            {% endif %}
+        </div>
+        <h3><a class="link-no-underline font-base d-block" href="{{ post.url }}">{{ post.title }}</a></h3>
+        <p class="mb-0">{{ post.summary }}</p>
+    </div>
+</article>

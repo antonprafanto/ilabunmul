@@ -1,0 +1,34 @@
+// About
+// =============================================================================
+
+.facts {
+    z-index: 1;
+    position: relative;
+    padding-top: #{'min(4.5vh, 48px)'};
+    padding-bottom: #{'min(4.5vh, 48px)'};
+    margin-top: #{'min(4.5vh, 48px)'};
+    [class^='col-']:not(:first-child) {
+        border-left: 1px solid #dee2e6;
+    }
+    @media (max-width: 767.98px) {
+        [class^='col-'] {
+            &:not(:last-child) {
+                margin-bottom: #{'min(4.5vh, 48px)'};
+            }
+            &:not(:first-child) {
+                border: none;
+            }
+        }
+    }
+}
+
+.fact {
+    text-align: center;
+    &__number {
+        @include font-size(4.5rem);
+        font-family: $font-family-base;
+        font-weight: 300;
+        line-height: 1;
+        color: $primary;
+    }
+}

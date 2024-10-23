@@ -1,0 +1,70 @@
+{# themedoc
+[/themedoc-section-name/]: # (Breadcrumbs)
+
+[/themedoc-section/]:
+
+### Variables
+* {string} **cssClasses** - component css class list.
+* {array} **breadcrumbs** - multidimensional array of arrays where 'name' is breadcrumb name and 'url' is breadcrumb url.
+
+### Usage
+{% verbatim %}
+    {% partial "breadcrumbs/breadcrumbs"
+        cssClasses = ""
+        breadcrumbs =
+        [
+            {
+                "name": "First page",
+                "url": "#first-page"
+            },
+            {
+                "name": "Second page",
+                "url": "#second-page"
+            }
+        ]
+    %}
+{% endverbatim %}
+
+### Examples
+    {% partial "breadcrumbs/breadcrumbs"
+        cssClasses = "not-prose"
+        breadcrumbs =
+        [
+            {
+                "name": "First page",
+                "url": "#first-page"
+            },
+            {
+                "name": "Second page",
+                "url": "#second-page"
+            }
+        ]
+    %}
+#}
+
+{% set index = 1 %}
+<ol class="flex items-center overflow-y-auto p-0 list-none {{ cssClasses }}" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="">
+        <a href="/" itemprop="item" class="flex items-center no-underline text-xs text-default transition hover:text-primary">
+            <div itemprop="name" class="">Home</div>
+        </a>
+        <meta itemprop="position" content="{{ index }}">
+    </li>
+    <li class="px-1 text-default text-xs">/</li>
+    {% for breadcrumb in breadcrumbs %}
+        <li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem" class="">
+            {% if loop.last %}
+                <div class="whitespace-nowrap text-xs text-default" itemprop="name">{{ breadcrumb.name }}</div>
+            {% else %}
+                <a class="whitespace-nowrap no-underline text-xs text-default transition hover:text-primary" href="{{ breadcrumb.url }}" itemprop="item">
+                    <div class="" itemprop="name">{{ breadcrumb.name }}</div>
+                </a>
+            {% endif %}
+            <meta itemprop="position" content="{{ index }}">
+        </li>
+        {% if not loop.last %}
+            <li class="px-1 text-default text-xs">/</li>
+        {% endif %}
+        {% set index = loop.index + 1 %}
+    {% endfor %}
+</ol>

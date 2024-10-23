@@ -1,0 +1,27 @@
+{# Base common styles #}
+{% set classComponentBase = 'inline-block' %}
+
+{# Default styles #}
+{% set classComponentColor = 'text-gray' %}
+{% set classComponentSize = 'text-base md:text-md lg:text-lg' %}
+
+{# Modificators #}
+{% set classComponentSize = (size == 'h1') ? 'text-4xl' : classComponentSize %}
+{% set classComponentSize = (size == 'h2') ? 'text-3xl xl:text-4xl' : classComponentSize %}
+{% set classComponentSize = (size == 'h3') ? ' text-2xl xl:text-3xl' : classComponentSize %}
+{% set classComponentSize = (size == 'h4') ? ' text-xl xl:text-2xl' : classComponentSize %}
+{% set classComponentSize = (size == 'h5') ? ' text-lg xl:text-xl' : classComponentSize %}
+{% set classComponentColor = (color == 'primary') ? 'text-primary' : classComponentColor %}
+{% set classComponentColor = (color == 'secondary') ? 'text-secondary' : classComponentColor %}
+{% set classComponentColor = (color == 'light') ? 'text-white' : classComponentColor %}
+
+{% if variation == 'with-image' %}
+    {% set classComponentVariation = 'relative z-0 text-center' %}
+{% endif %}
+
+<{{ tag|default('div') }} class="{{ classComponentBase }} {{ classComponentColor }} {{ classComponentSize }} {{ classComponentVariation }} {{ cssClasses }}">
+{{ text }}
+{% if variation == 'with-image' %}
+    {% partial "svg-icon/svg-icon" name="house-2" cssClasses="w-32 h-32 fill-gray-100 absolute inset-x-0 inset-y-0 m-auto -z-10" %}
+{% endif %}
+</{{ tag|default('div') }}>

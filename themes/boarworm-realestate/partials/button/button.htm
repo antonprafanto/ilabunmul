@@ -1,0 +1,183 @@
+{#themedoc
+[/themedoc-section-name/]: # (Button)
+
+[/themedoc-section/]:
+### Variables:
+* {string} tag - html button tag (button, div, a etc.).
+* {string} cssClasses - list of additional css classes.
+* {mixed} body - button inner content, can be simple line of text or other partial.
+* {string} size - button size: sm, lg, xl, 2xl.
+* {string} color - button color: primary, secondary.
+* {string} variant - button variation (different style, double border etc.): primary.
+* {array} attributes - button html attributes.
+
+### Usage example:
+    {% verbatim %}
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Search"
+        size=""
+        color="primary"
+        variant=""
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+    {% endverbatim %}
+
+### Examples
+#### Colors
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Button default"
+        size=""
+        color=""
+        variant=""
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Button primary color"
+        size=""
+        color="primary"
+        variant=""
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Button secondary color"
+        size=""
+        color="secondary"
+        variant=""
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Button tertiary color"
+        size=""
+        color="tertiary"
+        variant=""
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+
+#### Sizes
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Button sm size"
+        size="sm"
+        color=""
+        variant=""
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Button default size"
+        size=""
+        color=""
+        variant=""
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Button lg size"
+        size="lg"
+        color=""
+        variant=""
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Button xl size"
+        size="xl"
+        color=""
+        variant=""
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Button 2xl size"
+        size="2xl"
+        color=""
+        variant=""
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+
+#### Variations
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Button primary variation"
+        size=""
+        color=""
+        variant="primary"
+        attributes = {
+            'type':'button',
+            'name':'example-button',
+            'id':'example-button',
+    } %}
+#}
+
+{# Base common styles #}
+{% set classComponentBase = 'inline-block text-center font-medium uppercase rounded-sm drop-shadow-md transition-all focus:outline-none focus:ring' %}
+
+{# Default styles #}
+{% set classComponentColor = 'text-white bg-gray-500 hover:bg-primary' %}
+{% set classComponentVariant = '' %}
+
+{# Modificators #}
+{% set classComponentSize = (size == 'sm') ? 'text-sm px-4 py-2' : classComponentSize %}
+{% set classComponentSize = (size == '') ? 'text-base px-4 py-2' : classComponentSize %}
+{% set classComponentSize = (size == 'lg') ? 'text-lg px-6 py-3' : classComponentSize %}
+{% set classComponentSize = (size == 'xl') ? 'text-xl px-8 py-4' : classComponentSize %}
+{% set classComponentSize = (size == '2xl') ? 'text-2xl px-12 py-5' : classComponentSize %}
+{% set classComponentColor = (color == 'primary') ? 'text-white bg-primary hover:bg-primary-light' : classComponentColor %}
+{% set classComponentColor = (color == 'secondary') ? 'text-white bg-secondary hover:bg-secondary-light' : classComponentColor %}
+{% if variant == 'primary' %}
+    {% set classComponentVariant = 'outline outline-1 -outline-offset-4 border border-solid' %}
+    {% set classComponentColor = (color == '') ? 'text-gray-500 border-gray-500 outline-gray-500 bg-white hover:text-white hover:bg-gray-500 hover:border-gray-500 hover:outline-white' : classComponentColor %}
+    {% set classComponentColor = (color == 'primary') ? 'text-primary border-primary outline-primary bg-white hover:text-white hover:bg-primary hover:border-primary hover:outline-white' : classComponentColor %}
+    {% set classComponentColor = (color == 'secondary') ? 'text-secondary border-secondary outline-secondary bg-white hover:text-white hover:bg-secondary hover:border-secondary hover:outline-white' : classComponentColor %}
+{% endif %}
+
+<{{ tag ? tag : 'button' }} {% for key, value in attributes %} {% if key %}{{ key }}="{{ value }}" {% endif %}{% endfor %} class="{{ classComponentBase }} {{ classComponentSize }} {{ classComponentColor }} {{ classComponentVariant }} {{ cssClasses }}">
+{{ body|raw }}
+</{{ tag ? tag : 'button' }}>

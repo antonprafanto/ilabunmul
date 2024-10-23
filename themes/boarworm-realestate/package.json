@@ -1,0 +1,43 @@
+{
+    "name": "starter",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "author": "Boarworm",
+    "devDependencies": {
+        "@babel/core": "^7.16.0",
+        "@tailwindcss/aspect-ratio": "^0.4.0",
+        "@tailwindcss/forms": "^0.4.0",
+        "@tailwindcss/line-clamp": "^0.3.0",
+        "@tailwindcss/typography": "^0.5.0",
+        "autoprefixer": "^10.4.0",
+        "browser-sync": "^2.11.2",
+        "browser-sync-webpack-plugin": "^2.3.0",
+        "laravel-mix": "^6.0.39",
+        "laravel-mix-purgecss": "^6.0.0",
+        "postcss": "^8.4.4",
+        "resolve-url-loader": "^3.1.4",
+        "svg-spritemap-webpack-plugin": "^4.5.0",
+        "tailwindcss": "^3.0.0",
+        "tailwindcss-pseudo-elements": "^1.5.1"
+    },
+    "dependencies": {
+        "@fancyapps/fancybox": "^3.5.7",
+        "cross-env": "^7.0.3",
+        "dialog-polyfill": "^0.5.6",
+        "focus-trap": "^6.7.2",
+        "formbouncerjs": "^1.4.6",
+        "jquery": "^3.6.0",
+        "lazysizes": "^5.3.2",
+        "photoswipe": "^5.2.4",
+        "swiper": "^8.1.0"
+    }
+}

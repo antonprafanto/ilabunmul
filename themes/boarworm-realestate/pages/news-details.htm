@@ -1,0 +1,135 @@
+title = "News details"
+layout = "default"
+url = "/news/:slug"
+==
+{% set post = demoData.posts[0] %}
+{% set latestPosts = demoData.posts %}
+{% set page = demoData.pages.news_details %}
+{% put meta %}
+{% partial "meta/meta"
+    title = page.meta_title
+    description = page.meta_description
+    keywords = page.meta_keywords
+    og_image_1200_630 = ""
+    og_image_1200_1200 = "" %}
+{% endput %}
+{% set breadcrumbs = [
+    {'name':'News','url':'news'|page() },
+    {'name':post.title,'url':'' }
+] %}
+<div class="container py-10">
+    <div class="mb-8">
+        {% partial "headline/headline"
+            cssClasses = "mb-2"
+            tag = "h1"
+            color = ""
+            size = "h1"
+            text = post.title %}
+        {% partial "breadcrumbs/breadcrumbs"
+            cssClasses = ""
+            breadcrumbs = breadcrumbs %}
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)]">
+        <div class="">
+            {% partial "image/image"
+                cssClasses = "mb-6"
+                imgcssClasses = "w-full h-auto"
+                src = post.image|theme
+                resize =
+                {
+                    'width':'970',
+                    'height':'555',
+                    'mode':'crop',
+                    'extension':'',
+                    'quality':''
+                }
+                attributes =
+                {
+                    'alt' : this.page.title
+                } %}
+            <div class="italic mb-2">{{ post.published_at|date('M d, Y') }}</div>
+            <div class="prose mb-8">{{ post.content|raw }}</div>
+            <div class="flex items-center">
+                <div class="mr-2 font-bold text-secondary">Share:</div>
+                <div class="flex -m-2">
+                    <a href="#" class="m-2">
+                        {% partial "svg-icon/svg-icon" name="facebook" cssClasses="w-6 h-6 fill-default-dark hover:fill-primary transition" %}
+                    </a> <a href="#" class="m-2">
+                        {% partial "svg-icon/svg-icon" name="instagram" cssClasses="w-6 h-6 fill-default-dark hover:fill-primary transition" %}
+                    </a> <a href="#" class="m-2">
+                        {% partial "svg-icon/svg-icon" name="twitter" cssClasses="w-6 h-6 fill-default-dark hover:fill-primary transition" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="mb-8">
+                <div class="flex items-center mb-4">
+                    <div class="text-xl font-medium shrink-0 mr-2">Search</div>
+                    <div class="h-1 bg-primary grow"></div>
+                </div>
+                <div class="">
+                    {% partial "search-bar/search-bar"
+                        cssClasses = "w-full"
+                        input =
+                        {
+                            cssClasses: "",
+                            label: "",
+                            attributes:
+                            {
+                                "name":"query",
+                                "id":"query",
+                                "placeholder":"Enter your keywords"
+                            }
+                        }
+                        button =
+                        {
+                            cssClasses: "!drop-shadow-none !rounded-none absolute right-px h-full",
+                            tag: "button",
+                            size: "",
+                            color: "secondary",
+                            variant: "",
+                            attributes:
+                            {
+                                'type':'submit'
+                            }
+                        } %}
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <div class="flex items-center mb-4">
+                    <div class="text-xl font-medium shrink-0 mr-2">Latest news</div>
+                    <div class="h-1 bg-primary grow"></div>
+                </div>
+                <div class="grid grid-cols-1 gap-4">
+                    {% for post in latestPosts %}
+                        {% partial "card-post-small/card-post-small"
+                            cssClasses = ""
+                            title = post.title
+                            date = post.published_at|date('M d, Y')
+                            url = "news-details"|page({ slug: post.slug })
+                            excerpt = post.excerpt
+                            image =
+                            {
+                                src: post.image|theme,
+                                attributes:
+                                {
+                                    "alt": post.title
+                                },
+                                resize:
+                                {
+                                    "width": "120",
+                                    "height": "120",
+                                    "mode": "crop",
+                                    "extension": "",
+                                    "quality": ""
+                                }
+                            } %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

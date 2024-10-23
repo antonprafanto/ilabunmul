@@ -1,0 +1,142 @@
+{# themedoc
+[/themedoc-section-name/]: # (Card listing)
+
+[/themedoc-section/]:
+
+### Dependencies
+* [image](#image)
+* [svg-icon](#svg-icon)
+
+### Variables
+* {string} **cssClasses** - component css class list.
+* {string} **title** - card title.
+* {string} **url** - card url.
+* {string} **status** - listing status.
+* {string} **lot_size** - listing size/square.
+* {string} **bedrooms** - number of bedrooms.
+* {string} **bathrooms** - number of bathrooms.
+* {string} **price** - listing price.
+* {string} **address** - listing address.
+* {string} **contract_type** - listing contact type (For sale|For rent).
+* {array} **image** - card preview image data:
+    * {string} **imgCssClasses** - img tag css class list.
+    * {mixed} **src** - image object or path to the image.
+    * {array} **resize** - resize options:
+        * {string} **width** - resize width.
+        * {string} **height** - resize height.
+        * {string} **mode** - resize mode (default 'crop').
+        * {string} **extension** - resize extension.
+        * {string} **quality** - resize quality (default '80').
+    * {array} **attributes** - img tag html attributes.
+
+### Usage
+{% verbatim %}
+    {% partial "card-listing/card-listing"
+        cssClasses = "lg"
+        title = "Cozy 2-Bedroom Apartment in Downtown"
+        url = "listings-details"|page({ slug: "listing-details" })
+        contract_type = "For sale"
+        address = "123 Main St, Unit 4, Los Angeles, USA"
+        status = "Reduced in price"
+        price = "$"~500000|number_format(0,'.',',')
+        lot_size = "120 SqFt"
+        bedrooms = 2
+        bathrooms = 2
+        image =
+        {
+            imgCssClasses: "",
+            src: "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg",
+            resize:
+            {
+                "width": "640",
+                "height": "360",
+                "mode": "crop",
+                "extension": "",
+                "quality": ""
+            },
+            attributes:
+            {
+                "alt": "Cozy 2-Bedroom Apartment in Downtown"
+            }
+        }
+    %}
+{% endverbatim %}
+
+### Examples
+    {% partial "card-listing/card-listing"
+        cssClasses = "not-prose max-w-lg"
+        title = "Cozy 2-Bedroom Apartment in Downtown"
+        url = "listings-details"|page({ slug: "listing-details" })
+        contract_type = "For sale"
+        address = "123 Main St, Unit 4, Los Angeles, USA"
+        status = "Reduced in price"
+        price = "$"~500000|number_format(0,'.',',')
+        lot_size = "120 SqFt"
+        bedrooms = 2
+        bathrooms = 2
+        image =
+        {
+            imgCssClasses: "",
+            src: "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg",
+            resize:
+            {
+                "width": "640",
+                "height": "360",
+                "mode": "crop",
+                "extension": "",
+                "quality": ""
+            },
+            attributes:
+            {
+                "alt": "Cozy 2-Bedroom Apartment in Downtown"
+            }
+        }
+    %}
+#}
+
+<div class="flex flex-col {{ cssClasses }}">
+    <a href="{{ url }}" class="relative w-full overflow-hidden group">
+        {% partial "image/image"
+            cssClasses = "w-full h-auto transition group-hover:scale-125"
+            imgCssClasses = image.imgCssClasses
+            src = image.src
+            resize = image.resize
+            attributes = image.attributes %}
+        {% if status %}
+            <div class="bg-primary text-sm text-secondary absolute left-0 top-4 py-1 px-2 rounded-tr-sm rounded-br-sm">{{ status }}</div>
+        {% endif %}
+        <div class="absolute left-0 bottom-0 z-10 w-full flex justify-center py-2 bg-white/80">
+            {% if lot_size %}
+                <div class="flex grow text-sm items-center justify-center border-r border-gray-400 px-1" title="{{ lot_size }}">
+                    {% partial "svg-icon/svg-icon" name="square" cssClasses="w-6 h-6 fill-gray-700 mr-2" %}
+                    {{ lot_size }}
+                </div>
+            {% endif %}
+            {% if bedrooms %}
+                <div class="flex grow text-sm items-center justify-center border-r border-gray-400 px-1" title="{{ bedrooms }} bedroom(s)">
+                    {% partial "svg-icon/svg-icon" name="bed" cssClasses="w-6 h-6 fill-gray-700 mr-2" %}
+                    {{ bedrooms }}
+                </div>
+            {% endif %}
+            {% if bathrooms %}
+                <div class="flex grow text-sm items-center justify-center px-1" title="{{ bathrooms }} bathrooms(s)">
+                    {% partial "svg-icon/svg-icon" name="shower" cssClasses="w-6 h-6 fill-gray-700 mr-2" %}
+                    {{ bathrooms }}
+                </div>
+            {% endif %}
+        </div>
+    </a>
+    <div class="flex flex-col grow">
+        <a href="{{ url }}" class="flex text-lg transition leading-tight font-medium hover:text-secondary py-3 grow">{{ title }}</a>
+        <hr>
+        <div class="flex justify-between items-center py-2">
+            <div class="font-bold text-2xl">{{ price }}</div>
+            <div class="text-xs bg-secondary px-2 flex items-center justify-center relative text-white uppercase h-[22px] mr-3 after:-ml-[8px] after:-mt-[1px] after:absolute after:bg-secondary after:content-[''] after:h-4 after:w-4 after:left-full after:rotate-45 after:rounded-sm after:top-1 after:-z-10 before:content-[''] before:absolute before:-right-1 before:inset-y-0 before:m-auto before:w-1 before:h-1 before:rounded-full before:bg-white">{{ contract_type }}</div>
+        </div>
+        <hr>
+        <div class="flex mt-2">
+            {% partial "svg-icon/svg-icon" name="pin" cssClasses="w-4 h-4 fill-gray-700 mr-2 shrink-0 mt-0.5" %}
+            {{ address }}
+        </div>
+    </div>
+</div>

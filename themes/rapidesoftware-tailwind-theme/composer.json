@@ -1,0 +1,14 @@
+{
+  "name": "rapidesoftware/tailwind-theme-theme",
+  "type": "october-theme",
+  "description": "Initialises Tailwind into your OctoberCMS project.",
+  "require": {
+    "composer/installers": "~1.0",
+    "rapidesoftware/tailwind-theme-theme": "~3.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  }
+}

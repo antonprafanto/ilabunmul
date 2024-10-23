@@ -1,0 +1,61 @@
+{# SERVICES #}
+<section id="services" class="space-py-8 {{ this.theme.services_background_color ? 'bg-primary-light' : 'bg-white' }}">
+    <div class="container">
+        <header class="text-center space-mb-3 max-width-800 mx-auto">
+            <div class="section__preheading left-0">{{ this.theme.services_pretitle }}</div>
+            <h2>{{ this.theme.services_title }}</h2>
+            {% if this.theme.services_lead %}
+                <p class="lead mb-0">{{ this.theme.services_lead|nl2br }}</p>
+            {% endif %}
+        </header>
+        <div class="row">
+            {% for item in this.theme.services_repeater %}
+                <div class="col-md-6 {{ loop.last ? '' : 'space-mb-3' }} {{ loop.revindex == 2 ? 'mb-md-0' : '' }}">
+                    <div class="service-card {% if (loop.index is odd) %}pr-lg-5{% else %}pl-lg-5{% endif %}">
+                        {% if item.description|length > 2 %}
+                        <a data-fancybox data-touch="false" href="#serviceModal{{ loop.index }}" class="service-card__link" role="button">
+                        {% endif %}
+                            <div class="d-flex align-items-start">
+                                <figure class="w-100 mr-4" style="max-width: 3.5rem;"> 
+                                    {% if item.icon|split('.')|last == 'svg' %}
+                                        <img
+                                            style="width:100%;height:auto;"
+                                            class="rounded-circle"
+                                            src="{{ item.icon|media }}"
+                                            width="1"
+                                            height="1"
+                                            alt="{{ item.icon_alt }}">
+                                    {% else %}
+                                        <img
+                                            style="width:100%;height:auto;"
+                                            class="rounded-circle"
+                                            src="{{ item.icon|media|resize(56, 56) }}"
+                                            srcset="{{ item.icon|media|resize(56, 56) }} 1x, {{ item.icon|media|resize(112, 112) }} 2x"
+                                            width="1"
+                                            height="1"
+                                            alt="{{ item.icon_alt }}">
+                                    {% endif %}
+                                </figure>
+                                <div>
+                                    <h3 class="service-card__title">{{ item.title }}</h3>
+                                    <p class="mb-0">{{ item.excerpt|nl2br }}</p>
+                                </div>
+                            </div>
+                        {% if item.description|length > 2 %}
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% if item.description|length > 2 %}
+                        <div id="serviceModal{{ loop.index }}" class="corner-shape-lg" style="display:none;width:100%;max-width:700px;">
+                            <div class="modal-scroll space-p-4" data-simplebar data-simplebar-auto-hide="false">
+                                <div class="overflow-hidden">
+                                    {{ item.description|raw }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

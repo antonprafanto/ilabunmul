@@ -1,0 +1,25 @@
+<div class="grid gap-4 self-start">
+	{% for tab in page_builder %}
+		{% set rowClass = tab.column_grid[0].width == '1x5' ? "md:grid-cols-[minmax(0,1fr)_minmax(0,5fr)]" : "" %}
+		{% set rowClass = tab.column_grid[0].width == '2x5' ? "md:grid-cols-[minmax(0,2fr)_minmax(0,5fr)]" : rowClass %}
+		{% set rowClass = tab.column_grid[0].width == '3x5' ? "md:grid-cols-[minmax(0,3fr)_minmax(0,5fr)]" : rowClass %}
+		{% set rowClass = tab.column_grid[0].width == '4x5' ? "md:grid-cols-[minmax(0,4fr)_minmax(0,5fr)]" : rowClass %}
+		{% set rowClass = tab.column_grid[0].width == '5x5' ? "md:grid-cols-[minmax(0,5fr)_minmax(0,5fr)]" : rowClass %}
+		{% set rowClass = tab.column_grid[0].width == '5x1' ? "md:grid-cols-[minmax(0,5fr)_minmax(0,1fr)]" : rowClass %}
+		{% set rowClass = tab.column_grid[0].width == '5x2' ? "md:grid-cols-[minmax(0,5fr)_minmax(0,2fr)]" : rowClass %}
+		{% set rowClass = tab.column_grid[0].width == '5x3' ? "md:grid-cols-[minmax(0,5fr)_minmax(0,3fr)]" : rowClass %}
+		{% set rowClass = tab.column_grid[0].width == '5x4' ? "md:grid-cols-[minmax(0,5fr)_minmax(0,4fr)]" : rowClass %}
+
+		{% if tab._group == "two_columns" %}
+			<div class="grid gap-4 {{ rowClass }}">
+				{% partial "page-builder-blocks/page-builder-blocks" blocks=tab.column_one_content %}
+				{% partial "page-builder-blocks/page-builder-blocks" blocks=tab.column_two_content %}
+			</div>
+		{% endif %}
+		{% if tab._group == "one_column" %}
+			<div class="grid gap-4">
+				{% partial "page-builder-blocks/page-builder-blocks" blocks=tab.column_one_content %}
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>

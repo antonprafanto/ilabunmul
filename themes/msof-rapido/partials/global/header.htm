@@ -1,0 +1,47 @@
+{# HEADER #}
+<header class="page-header bg-white">
+    <div class="container">
+        <nav class="navbar navbar-expand-md px-0">
+            <a aria-label="Navigate to home page" class="navbar-brand py-0 mr-2" href="{{ url('/') }}">
+                {% if this.theme.global_header_logo.extension == 'svg' %}
+                    <img 
+                        src="{{ this.theme.global_header_logo.path }}"
+                        height="{{ this.theme.global_header_logo_height }}"
+                        alt="{{ this.theme.global_header_logo.description }}">
+                {% else %}
+                     <img 
+                        src="{{ this.theme.global_header_logo.path|resize(auto, this.theme.global_header_logo_height) }}"
+                        srcset="{{ this.theme.global_header_logo.path|resize(auto, this.theme.global_header_logo_height) }} 1x,
+                                {{ this.theme.global_header_logo.path|resize(auto, (2 * this.theme.global_header_logo_height)) }} 2x"
+                        height="{{ this.theme.global_header_logo_height }}"
+                        alt="{{ this.theme.global_header_logo.description }}">
+                {% endif %}
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {{ this.page.baseFileName == 'home' ? 'active' : ''}}" href="{{ url('/') }}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ this.page.baseFileName == 'blog' ? 'active' : ''}}" href="{{ 'blog'|page }}">BLOG</a>
+                    </li>
+                </ul>
+                {# HEADER BUTTON #}
+                {% if this.theme.global_header_cta_label %}
+                    <div class="navbar-cta">
+                        <a
+                            {{ this.theme.global_header_cta_new_tab ? 'target="_blank"' : '' }}
+                            {{ this.theme.global_header_cta_same_host ? '' : 'rel="noopener noreferrer"' }}
+                            href="{{ this.theme.global_header_cta_url }}"
+                            class="btn btn-accent">
+                                {{ this.theme.global_header_cta_icon ? this.theme.global_header_cta_icon|raw : '' }} {{ this.theme.global_header_cta_label }}
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+</header>

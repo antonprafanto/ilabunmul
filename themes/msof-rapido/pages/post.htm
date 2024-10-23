@@ -1,0 +1,156 @@
+url = "/blog/post/:slug"
+layout = "default"
+title = "Post"
+meta_description = "Live demo of the Rapido business theme for October CMS."
+
+[blogPost]
+slug = "{{ :slug }}"
+categoryPage = "blog-category"
+
+[registerVisit]
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 0
+categoryPage = "blog-category"
+
+[topPosts]
+period = 5
+category = 0
+postPerPage = 4
+postPage = "post"
+slug = "{{ :slug }}"
+
+[searchInput]
+useAutoComplete = 0
+autoCompleteResultCount = 5
+showProviderBadge = 1
+searchPage = "search-results.htm"
+
+[tags]
+results = 0
+sortOrder = "created_at desc"
+
+[relatedPosts]
+slug = "{{ :slug }}"
+results = 4
+==
+<?php
+function onStart() {
+    $imageSettings = array();
+    $imageSettings['width'] = 726;
+    $imageSettings['widths'] = array(726, 606, 686, 506, 380, 326);
+    $imageSettings['sizes'] = '(min-width: 1200px) 726px, (min-width: 992px) 606px, (min-width: 768px) 686px, (min-width: 576px) 506px, calc(100vw - 34px)';
+    
+    $this["imageSettings"] = $imageSettings;
+}
+
+function onEnd()
+{
+    // Optional - set the page title to the post title
+    if (isset($this->post)) {
+        $this->page->title = $this->post->title;
+        $this->page->description = $this->post->summary;
+    }
+}
+?>
+==
+{% set post = blogPost.post %}
+
+{# COVER #}
+{% partial 'blog/cover' type='post' title=post.title lead=post.summary categories=post.categories %}
+
+<div class="container space-py-4">
+    <div class="row position-relative">
+        <div class="col-lg-8">
+            <section class="single-post overflow-hidden">
+                {# AUTHOR #}
+                <div class="d-flex mb-3 align-items-center">
+                    {% if post.user %}
+                        <img
+                            class="single-post__profile-image rounded-circle border mr-2"
+                            src="{{ post.user.getAvatarThumb(60) }}"
+                            srcset="{{ post.user.getAvatarThumb(60) }} 1x, {{ post.user.getAvatarThumb(120) }} 2x"
+                            width="60"
+                            height="60"
+                            alt="{{ post.user.first_name }} {{ post.user.last_name }}">
+                    {% endif %}
+                    <div class="media-body">
+                        {% if post.user %}<div class="m-0">By {{ post.user.first_name }} {{ post.user.last_name }}</div>{% endif %}
+                        <div class="font-light"><i class="fas fa-calendar-day"></i> {{ post.published_at | date('rainlab.blog::lang.post.date_format'|trans) }}</div>
+                    </div>
+                </div>
+                {# CAROUSEL #}
+                <div {% if post.featured_images|length > 1 %}id="singlePostCarousel"{% endif %} class="single-post-carousel owl-carousel owl-theme border corner-shape-lg overflow-hidden">
+                    {% for image in post.featured_images %}
+                        {# CAROUSEL ITEM #}
+                        {% partial 'blog/post-carousel-item' image=image imageSettings=imageSettings %}
+                    {% endfor %}
+                </div>
+                {# CONTENT #}
+                <div class="mt-3">
+                    {{ post.content_html|raw }}
+                </div>
+                <hr class="my-5">
+                {# SHARING LINKS #}
+                {% partial 'blog/sharing-links' %}
+            </section>
+        </div>
+        <div class="col-lg-4 pl-lg-5 sticky-sidebar">
+            <hr class="my-5 d-lg-none">
+            <aside class="aside">
+                {# SEARCH #}
+                {% partial 'searchForm/default' text="Search for posts" class="mb-4" %}
+                {# CATEGORIES #}
+                {% partial 'blog/categories' blogCategories=blogCategories %}
+                {# TAGS #}
+                {% partial 'blog/tags' tags=tags class='mb-4 mb-lg-0' %}
+            </aside>
+        </div>
+        <div class="col-lg-8">
+            <hr class="my-5 d-none d-lg-block">
+            {# SIMILAR #}
+            {% partial 'blog/popular' class="mb-4" title="Similar posts" posts=relatedPosts.posts isPopular=false %}
+            {# POPULAR #}
+            {% partial 'blog/popular' class="" title="Popular posts" posts=topPosts.mostVisitedPosts isPopular=true %}
+        </div>
+    </div>
+</div>
+
+{# CTA SECONDARY #}
+{% if this.theme.cta_secondary_enable == 1 %}
+    {% partial 'global/cta' 
+        cta_title="#{ this.theme.cta_secondary_title }"
+        cta_primary_button_icon="#{ this.theme.cta_secondary_primary_button_icon }"
+        cta_primary_button_label="#{ this.theme.cta_secondary_primary_button_label }"
+        cta_primary_button_url="#{ this.theme.cta_secondary_primary_button_url }"
+        cta_primary_button_new_tab="#{ this.theme.cta_secondary_primary_button_new_tab}"
+        cta_primary_button_same_host="#{ this.theme.cta_secondary_primary_button_same_host}"
+        cta_secondary_button_icon="#{ this.theme.cta_secondary_secondary_button_icon }"
+        cta_secondary_button_label="#{ this.theme.cta_secondary_secondary_button_label }"
+        cta_secondary_button_url="#{ this.theme.cta_secondary_secondary_button_url }"
+        cta_secondary_button_new_tab="#{ this.theme.cta_secondary_secondary_button_new_tab}"
+        cta_secondary_button_same_host="#{ this.theme.cta_secondary_secondary_button_same_host}"
+    %}
+{% endif %}
+
+{# STYLES #}
+{% put styles %}
+    <link rel="stylesheet" href="{{ [
+        'assets/vendor/@fortawesome/fontawesome-free/css/all.min.css',
+        'assets/vendor/owl.carousel2/dist/assets/owl.carousel.min.css',
+        'assets/vendor/owl.carousel2/dist/assets/owl.theme.default.min.css',
+        'assets/vendor/aos/dist/aos.css',
+        'assets/vendor/cookieconsent/build/cookieconsent.min.css',
+        'assets/sass/rapido.scss'
+    ]|theme }}">
+{% endput %}
+
+{# SCRIPTS #}
+{% put scripts %}
+    <script type="text/javascript" src="{{ 'assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js'|theme }}"></script>
+    <script type="text/javascript" src="{{ [
+        'assets/vendor/owl.carousel2/dist/owl.carousel.min.js',
+        'assets/vendor/clipboard/dist/clipboard.min.js'
+    ]|theme }}"></script>
+{% endput %}

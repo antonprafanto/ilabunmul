@@ -1,0 +1,58 @@
+{# themedoc
+[/themedoc-section-name/]: # (Image)
+
+[/themedoc-section/]:
+
+### Variables
+* {string} **cssClasses** - component css class list.
+* {string} **imgCssClasses** - img tag css class list.
+* {mixed} **src** - image object or path to the image.
+* {array} **resize** - resize options:
+    * {string} **width** - resize width.
+    * {string} **height** - resize height.
+    * {string} **mode** - resize mode (default 'crop').
+    * {string} **extension** - resize extension.
+    * {string} **quality** - resize quality (default '80').
+* {array} **attributes** - img tag html attributes.
+
+### Usage
+{% verbatim %}
+    {% partial "image/image"
+        cssClasses = ""
+        imgCssClasses = ""
+        src = "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg"
+        resize = {
+            "width": "300",
+            "height": "200",
+            "mode": "crop",
+            "extension": "",
+            "quality": ""
+        }
+        attributes = {
+            "alt": "Image ALT"
+    } %}
+{% endverbatim %}
+
+
+### Examples
+{% partial "image/image"
+    cssClasses = "not-prose"
+    imgCssClasses = ""
+    src = "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg"
+    resize = {
+        "width": "300",
+        "height": "200",
+        "mode": "crop",
+        "extension": "",
+        "quality": ""
+    }
+    attributes = {
+        "alt": "Image ALT"
+} %}
+#}
+<div class="{{ cssClasses }}">
+    <picture>
+        <source srcset="{{ src|resize(resize.width, resize.height, {mode:resize.mode|default('crop'),'extension':'webp'}) }}" type="image/webp">
+        <img class="w-full h-full {{ imgCssClasses }}" src="{{ src|resize(resize.width, resize.height, {mode:resize.mode|default('crop'), quality:resize.quality|default(80)}) }}" {% for key, value in attributes %} {{ key }}="{{ value }}" {% endfor %}>
+    </picture>
+</div>

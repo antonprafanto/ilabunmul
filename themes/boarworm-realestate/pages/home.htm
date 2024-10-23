@@ -1,0 +1,267 @@
+title = "Home"
+layout = "default"
+url = "/"
+==
+{% set page = demoData.pages.home %}
+{% put meta %}
+{% partial "meta/meta"
+    title = page.meta_title
+    description = page.meta_description
+    keywords = page.meta_keywords
+    og_image_1200_630 = ""
+    og_image_1200_1200 = "" %}
+{% endput %}
+{% partial "banner/banner"
+    cssClasses = "mb-16 max-h-[calc(100vh-67px)]"
+    titleOne = "Discover Your"
+    titleTwo = "Dream Home Today"
+    text = "Let us find your perfect home. Our expert agents will do the work for you. With our network and personalized approach, we'll ensure all your needs are met. Don't settle – let us make your dream home a reality."
+    image =
+    {
+        imgCssClasses: "",
+        src: "assets/images/demo/banner.jpg"|theme,
+        attributes:
+        {
+            "alt": "Discover Your Dream Home Today"
+        },
+        resize:
+        {
+            "width": "1920",
+            "height": "1080",
+            "mode": "crop",
+            "extension": "",
+            "quality": ""
+        }
+    }
+    button1 =
+    {
+        cssClasses: "",
+        tag: "a",
+        body: "Get started",
+        size: "",
+        color: "primary",
+        variant: "",
+        attributes:
+        {
+            'href':'#get-started'
+        }
+    }
+    button2 =
+    {
+        cssClasses: "",
+        tag: "a",
+        body: "Learn more",
+        size: "",
+        color: "secondary",
+        variant: "",
+        attributes:
+        {
+            'href':'#learn-more'
+        }
+    }
+%}
+
+<div class="container flex flex-col items-center mb-16">
+    {% partial "headline/headline"
+        cssClasses = "mb-16"
+        tag = "h2"
+        color = ""
+        size = "h1"
+        variation = "with-image"
+        text = "Find Your Home" %}
+    {% partial "section-filter/section-filter"
+        cssClasses = "" %}
+</div>
+
+<div class="container flex flex-col items-center mb-16">
+    {% partial "headline/headline"
+        cssClasses = "mb-16"
+        tag = "h2"
+        color = ""
+        size = "h1"
+        variation = "with-image"
+        text = "Featured listings" %}
+    {% partial "section-featured-listings/section-featured-listings" cssClasses = "" %}
+</div>
+
+<div class="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2 sm:items-center mb-16">
+    <div class="p-8 md:py-12 lg:px-16 lg:py-24">
+        <div class="mx-auto max-w-xl text-center sm:text-left">
+            {% partial "headline/headline"
+                cssClasses = "mb-16"
+                tag = "h1"
+                color = ""
+                size = "h1"
+                variation = ""
+                text = demoData.about.title %}
+            <div class="prose">{{ demoData.about.text|raw }}</div>
+            <div class="mt-4 md:mt-8">
+                {% partial "button/button"
+                    class=""
+                    tag="a"
+                    body="Get Started Today"
+                    size=""
+                    color="secondary"
+                    variant=""
+                    attributes = {
+                    'href':'#get-started',
+                } %}
+            </div>
+        </div>
+    </div>
+    {% partial "image/image"
+        cssClasses = " overflow-hidden sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-tl-[30px] md:h-[calc(100%_-_4rem)] md:rounded-tl-[60px]"
+        imgcssClasses = "w-full h-full object-cover"
+        src = "assets/images/demo/about-us.jpg"|theme
+        resize =
+        {
+            'width':'1000',
+            'height':'600',
+            'mode':'crop',
+            'extension':'',
+            'quality':''
+        }
+        attributes =
+        {
+            'alt' : 'About us'
+        } %}
+</div>
+
+<div class="container flex flex-col items-center mb-16">
+    {% partial "headline/headline"
+        cssClasses = "mb-16"
+        tag = "h2"
+        color = ""
+        size = "h1"
+        variation = "with-image"
+        text = "Our team" %}
+    {% partial "carousel/carousel"
+        cssClasses = "js-carousel-our-team !pb-4 !px-1"
+        navigation = true
+        pagination = true
+        body %}
+        {% for member in demoData.team %}
+            {% partial "card-team-member/card-team-member"
+                cssClasses = "swiper-slide !h-auto"
+                title = member.title
+                position = member.position
+                url = "team-details"|page({ slug:"team-details" })
+                phone = member.phone
+                email = member.email
+                socials = member.socials
+                image =
+                {
+                    imgCssClasses: "",
+                    src: member.image|theme,
+                    attributes:
+                    {
+                        "alt": member.title
+                    },
+                    resize:
+                    {
+                        "width": "200",
+                        "height": "200",
+                        "mode": "crop",
+                        "extension": "",
+                        "quality": ""
+                    }
+                }
+            %}
+        {% endfor %}
+    {% endpartial %}
+</div>
+
+<div class="bg-secondary-lighter py-16 mb-16">
+    <div class="container grid gap-10 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+        {% for advantage in demoData.advantages %}
+            <div class="flex">
+                {% partial "svg-icon/svg-icon" name=advantage.icon cssClasses="w-12 h-12 fill-secondary mr-4 shrink-0" %}
+                <div class="flex flex-col justify-start items-start">
+                    <div class="text-lg font-medium mb-1">{{ advantage.title }}</div>
+                    <div class="font-light">{{ advantage.text }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="container flex flex-col items-center mb-16">
+    {% partial "headline/headline"
+        cssClasses = "mb-16"
+        tag = "h2"
+        color = ""
+        size = "h1"
+        variation = "with-image"
+        text = "What Client's Say" %}
+
+    {% partial "carousel/carousel"
+        cssClasses = "js-carousel-our-reviews !pb-4 !px-1"
+        navigation = true
+        pagination = true
+        body %}
+        {% for review in demoData.reviews %}
+            {% partial "card-review/card-review"
+                cssClasses = "swiper-slide !h-auto"
+                title = review.title
+                text = review.text
+                image =
+                {
+                    src: review.image|theme,
+                    attributes:
+                    {
+                        "alt": review.title
+                    },
+                    resize:
+                    {
+                        "width": "100",
+                        "height": "100",
+                        "mode": "crop",
+                        "extension": "",
+                        "quality": ""
+                    }
+                }
+            %}
+        {% endfor %}
+    {% endpartial %}
+
+</div>
+
+<div class="container flex flex-col items-center mb-16">
+    {% partial "headline/headline"
+        cssClasses = "mb-16"
+        tag = "h2"
+        color = ""
+        size = "h1"
+        variation = "with-image"
+        text = "Latest posts" %}
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-8">
+        {% for post in demoData.posts|slice(0, 3) %}
+            {% partial "card-post/card-post"
+                cssClasses = ""
+                title = post.title
+                date = post.published_at
+                url = "news-details"|page({ slug: post.slug })
+                excerpt = post.excerpt
+                image =
+                {
+                    src: post.image|theme,
+                    attributes:
+                    {
+                        "alt": post.title
+                    },
+                    resize:
+                    {
+                        "width": "640",
+                        "height": "360",
+                        "mode": "crop",
+                        "extension": "",
+                        "quality": ""
+                    }
+                }
+            %}
+        {% endfor %}
+    </div>
+</div>
+
+{% partial "section-partners/section-partners"
+    cssClasses = "" %}

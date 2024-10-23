@@ -1,0 +1,19 @@
+{# Base common styles #}
+{% set classComponentBase = 'textarea' %}
+{% set classLabelBase = 'block mb-2 font-medium uppercase' %}
+{% set classValidationBase = 'text-sm mt-1 text-white visible empty:hidden bg-red-500 p-1' %}
+{% set classInputBase = 'block font-light w-full p-2 h-24 border transition focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40' %}
+
+{# Default styles #}
+{% set classInputColor = 'border-gray-300' %}
+
+{# Modificators #}
+{% set classInputColor = (color == 'light') ? 'border-white bg-white' : classInputColor %}
+
+<div class="{{ classComponentBase }} {{ class }}">
+    {% if label %}
+        <label for="{{ attributes.id }}" class="{{ classLabelBase }}">{{ label }}</label>
+    {% endif %}
+    <textarea {% for key, value in attributes %} {{ key }}="{{ value }}" {% endfor %} class="{{ classInputBase }} {{ classInputColor }}"></textarea>
+    <div class="{{ classValidationBase }}" data-validate-for="{{ attributes.id }}"></div>
+</div>

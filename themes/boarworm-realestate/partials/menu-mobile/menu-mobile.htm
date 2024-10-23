@@ -1,0 +1,32 @@
+{% set menuLevel = 1 %}
+{% macro menu_recursive(menuItems,menuLevel,menuClass) %}
+    {% set classUlLevel1 = 'p-4' %}
+    {% set classLiLevel1 = 'mb-4 last:mb-0' %}
+    {% set classALevel1 = 'font-semibold text-default-dark' %}
+    {% set classUlLevel2 = '' %}
+    {% set classLiLevel2 = '' %}
+    {% set classALevel2 = 'text-sm text-default-dark' %}
+    {% import _self as menu_recursive %}
+    {% if menuItems %}
+        <ul class="{{ _context['classUlLevel'~menuLevel] }}" role="menubar">
+            {% for item in menuItems %}
+                {% if not item.viewBag.isHidden %}
+                    <li class="{{ _context['classLiLevel'~menuLevel] }}" role="menuitem">
+                        <a class="{{ _context['classALevel'~menuLevel] }} {{ item.isActive ?? 'text-primary' }} {{ item.items ? 'js-has-child' }}" href="{{ item.url ? item.url : 'javascript;' }}" {{ item.viewBag.isExternal ? "target=\"_blank\"" }}>
+                            {{ item.title }}
+                            {% if item.items %}
+                                {% partial "svg-icon/svg-icon" name="chevron-down" cssClasses="hidden w-4 h-4 fill-white absolute right-2 top-4" %}
+                            {% endif %}
+                        </a>
+                        {{ menu_recursive.menu_recursive(item.items,menuLevel+1,menuClass) }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+{% import _self as menu_recursive %}
+
+<nav id="{{ id }}" class="bg-gray-100 transition-all pt-[80px] w-full h-full z-50 transition fixed z-20 overflow-y-auto -right-full {{ cssClasses }}">
+    {{ menu_recursive.menu_recursive(menuItems,menuLevel,menuClass) }}
+</nav>

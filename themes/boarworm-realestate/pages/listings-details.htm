@@ -1,0 +1,169 @@
+title = "Listings details"
+layout = "default"
+url = "/listings/:slug"
+==
+{% set page = demoData.pages.listings_details %}
+{% set property = demoData.listings[0] %}
+{% set comparableProperties = demoData.listings|slice(1,4) %}
+{% put meta %}
+{% partial "meta/meta"
+    title = page.meta_title
+    description = page.meta_description
+    keywords = page.meta_keywords
+    og_image_1200_630 = ""
+    og_image_1200_1200 = "" %}
+{% endput %}
+{% set breadcrumbs = [
+    {'name':'Listings','url':'listings'|page()},
+    {'name':property.title,'url':'' }
+] %}
+<div class="container pt-2 pb-10">
+
+    {% partial "gallery/gallery"
+        cssClasses = "js-lightbox-gallery aspect-video mb-6 sm:!-m-1 sm:!mb-2 lg:aspect-auto lg:h-[500px]"
+        video = "K4TOrB7at0Y"
+        images = property.images %}
+
+    {% partial "breadcrumbs/breadcrumbs"
+        cssClasses = "mb-4 pb-4"
+        breadcrumbs = breadcrumbs %}
+
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end mb-8 border-b border-default-lighter">
+        {% partial "headline/headline"
+            cssClasses = "mb-4"
+            tag = "h1"
+            color = ""
+            size = "h1"
+            text = property.title %}
+        <div class="text-lg italic mb-4">{{ property.area }}</div>
+    </div>
+
+    <div class="flex flex-col mb-6 md:flex-row md:items-center">
+        <div class="text-secondary text-xl mb-4 md:m-0 md:mr-6 xl:mr-8">$ {{ property.price|number_format(0,'.',',') }}</div>
+        <div class="flex flex-col sm:flex-row">
+            {% if property.bedrooms %}
+                <div class="flex items-center justify-start mt-4 first:mt-0 sm:mt-0 sm:px-4 sm:border-l sm:border-default-lighter sm:last:pr-0 sm:first:pl-0 sm:first:border-l-0 md:p-4 md:first:border-l md:first:pl-4 xl:px-8 xl:first:pl-8">
+                    {% partial "svg-icon/svg-icon" name="bed" cssClasses="w-4 h-4 fill-secondary mr-2 md:w-6 h-6" %}
+                    {{ property.bedrooms }} bedroom(s)
+                </div>
+            {% endif %}
+            {% if property.bathrooms %}
+                <div class="flex items-center justify-start mt-4 first:mt-0 sm:mt-0 sm:px-4 sm:border-l sm:border-default-lighter sm:last:pr-0 sm:first:pl-0 sm:first:border-l-0 md:p-4 md:first:border-l md:first:pl-4 xl:px-8 xl:first:pl-8">
+                    {% partial "svg-icon/svg-icon" name="bath" cssClasses="w-4 h-4 fill-secondary mr-2 md:w-6 h-6" %}
+                    {{ property.bathrooms }} bathroom(s)
+                </div>
+            {% endif %}
+            {% if property.pool %}
+                <div class="flex items-center justify-start mt-4 first:mt-0 sm:mt-0 sm:px-4 sm:border-l sm:border-default-lighter sm:last:pr-0 sm:first:pl-0 sm:first:border-l-0 md:p-4 md:first:border-l md:first:pl-4 xl:px-8 xl:first:pl-8">
+                    {% partial "svg-icon/svg-icon" name="pool" cssClasses="w-4 h-4 fill-secondary mr-2 md:w-6 h-6" %}
+                    Pool
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="prose text-light">{{ property.description|raw }}</div>
+</div>
+
+<div class="container mb-8">
+    {% partial "headline/headline"
+        cssClasses = "mb-2"
+        tag = "h2"
+        color = ""
+        size = "h2"
+        text = "General" %}
+    <div class="prose w-full">
+        <table class="table-fixed">
+            <tbody>
+            <tr>
+                <td>Property Type</td>
+                <td>{{ property.type }} {{ property.contract_type }}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>{{ property.status }}</td>
+            </tr>
+            <tr>
+                <td>Area</td>
+                <td>{{ property.area }}</td>
+            </tr>
+            <tr>
+                <td>Lot size</td>
+                <td>{{ property.lot_size }} SqFt</td>
+            </tr>
+            <tr>
+                <td>Built up size</td>
+                <td>{{ property.built_up_size }} SqFt</td>
+            </tr>
+            <tr>
+                <td>Number of bedrooms</td>
+                <td>{{ property.bedrooms }}</td>
+            </tr>
+            <tr>
+                <td>Number of bathrooms</td>
+                <td>{{ property.bathrooms }}</td>
+            </tr>
+            <tr>
+                <td>Pool</td>
+                <td>{{ property.pool ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <td>Year built</td>
+                <td>{{ property.year_built }}</td>
+            </tr>
+            <tr>
+                <td>Listed since</td>
+                <td>{{ property.published_at|date('M d, Y') }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% partial "google-map/google-map"
+    cssClasses = "h-[400px]"
+    id = "property"
+    lat_lng = property.coordinates %}
+
+<div class="bg-gray-100 py-8">
+    <div class="container">
+        {% partial "headline/headline"
+            cssClasses = "mb-6"
+            tag = "h2"
+            color = ""
+            size = "h2"
+            text = "Comparable properties" %}
+        <div class="grid gap-y-8 gap-x-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {% for listing in comparableProperties %}
+                {% partial "card-listing/card-listing"
+                    cssClasses = ""
+                    title = listing.title
+                    url = "listings-details"|page({ slug: listing.slug })
+                    contract_type = listing.contract_type
+                    address = listing.address
+                    status = listing.status
+                    price = "$"~listing.price|number_format(0,'.',',')
+                    lot_size = listing.lot_size~" SqFt"
+                    bedrooms = listing.bedrooms
+                    bathrooms = listing.bathrooms
+                    image =
+                    {
+                        imgCssClasses: "",
+                        src: listing.image|theme,
+                        attributes:
+                        {
+                            "alt": listing.title
+                        },
+                        resize:
+                        {
+                            'width':'640',
+                            'height':'360',
+                            "mode": "crop",
+                            "extension": "",
+                            "quality": ""
+                        }
+                    }
+                %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

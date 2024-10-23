@@ -1,0 +1,35 @@
+{# Base common styles #}
+{% set classComponentBase = 'font-light' %}
+{% set classFakeInputBase = 'border-2 border-white bg-white outline outline-1 outline-gray-400 transition rounded-full flex items-center justify-center' %}
+{% set classInnerBase = 'flex items-center w-full' %}
+{% set classInputWrapperBase = 'relative' %}
+{% set classInputBase = 'absolute opacity-0 cursor-pointer w-full h-full peer' %}
+{% set classLabelBase = 'ml-2 cursor-pointer' %}
+{% set classErrorBase = 'text-sm mt-1 text-red-500 visible empty:hidden' %}
+
+{# Default styles #}
+{% set classComponentColor = 'text-gray' %}
+{% set classComponentSize = 'text-base' %}
+{% set classFakeInputColor = 'bg-white border-white outline-gray-400 peer-checked:bg-gray-400' %}
+{% set classFakeInputSize = 'w-4 h-4' %}
+
+{# Modificators #}
+{% set classComponentSize = (size == 'sm') ? 'text-sm' : classComponentSize %}
+{% set classFakeInputSize = (size == 'sm') ? 'w-3 h-3' : classFakeInputSize %}
+{% set classComponentSize = (size == 'lg') ? 'text-lg' : classComponentSize %}
+{% set classFakeInputSize = (size == 'lg') ? 'w-5 h-5' : classFakeInputSize %}
+{% set classComponentColor = (color == 'primary') ? '' : classComponentColor %}
+{% set classComponentColor = (color == 'secondary') ? '' : classComponentColor %}
+{% set classFakeInputColor = (color == 'primary') ? 'peer-checked:bg-primary' : classFakeInputColor %}
+{% set classFakeInputColor = (color == 'secondary') ? 'peer-checked:bg-secondary' : classFakeInputColor %}
+
+<div class="{{ classComponentBase }} {{ classComponentColor }} {{ classComponentSize }} {{ class }}">
+    <div class="{{ classInnerBase }}">
+        <div class="{{ classInputWrapperBase }}">
+            <input type="radio" {% for key, value in attributes %} {{ key }}="{{ value }}" {% endfor %} class="{{ classInputBase }}">
+            <div class="{{ classFakeInputBase }} {{ classFakeInputColor }} {{ classFakeInputSize }}"></div>
+        </div>
+        {% if label %}<label for="{{ attributes.id }}" class="{{ classLabelBase }}">{{ label }}</label>{% endif %}
+    </div>
+    <div class="{{ classErrorBase }}" data-validate-for="{{ attributes.id }}"></div>
+</div>

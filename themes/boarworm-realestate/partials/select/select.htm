@@ -1,0 +1,115 @@
+{# themedoc
+[/themedoc-section-name/]: # (Select)
+
+[/themedoc-section/]:
+Select component.
+
+### Variables
+* {string} **cssClasses** - component css class list.
+* {string} **label** - field label.
+* {array} **attributes** - select tag html attributes.
+* {array} **emptyOption** - object where key is option value and value is option name.
+* {string} **default** - value of option that should be selected by default.
+* {array} **options** - object where keys are option values and values are option names.
+
+### Usage
+{% verbatim %}
+    {% partial "select/select"
+        cssClasses = ""
+        label = "Location"
+        attributes =
+        {
+            "name" : "location",
+            "id" : "location"
+        }
+        emptyOption =
+        {
+            0 : "Please select"
+        }
+        defaultValue = "0"
+        options =
+        {
+            "option-1" : 'Option 1',
+            "option-2" : 'Option 2'
+        }
+    %}
+{% endverbatim %}
+
+### Examples
+    {% partial "select/select"
+        cssClasses = ""
+        label = "Location"
+        attributes =
+        {
+            "name" : "location",
+            "id" : "location"
+        }
+        emptyOption =
+        {
+            0 : "Please select"
+        }
+        defaultValue = "0"
+        options =
+        {
+            "option-1" : 'Option 1',
+            "option-2" : 'Option 2'
+        }
+    %}
+#}
+
+{# Base common styles #}
+{% set classComponentBase = '' %}
+{% set classLabelBase = 'block mb-2' %}
+{% set classSelectBase = 'block font-light appearance-none z-10 leading-normal pr-6 w-full cursor-pointer border border-gray-300 transition bg-transparent focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40' %}
+{% set classBodyBase = 'flex items-center relative bg-white' %}
+{% set classArrowBase = 'absolute right-2 z-0' %}
+{% set classValidationBase = 'mt-1 text-red-500 visible empty:hidden' %}
+
+{# Default styles #}
+{% set classComponentColor = '' %}
+{% set classComponentSize = '' %}
+{% set classComponentVariant = '' %}
+{% set classLabelColor = '' %}
+{% set classLabelSize = '' %}
+{% set classLabelVariant = '' %}
+{% set classSelectColor = '' %}
+{% set classSelectSize = '' %}
+{% set classSelectVariant = '' %}
+{% set classArrowSize = 'w-2 h-2' %}
+
+{# Modificators #}
+{% set classSelectColor = (color == 'primary') ? 'text-primary' : classSelectColor %}
+{% set classLabelColor = (color == 'primary') ? 'text-primary' : classLabelColor %}
+{% set classArrowColor = (color == 'primary') ? 'fill-primary' : classArrowColor %}
+
+{% set classSelectSize = (size == 'sm') ? 'text-sm pl-2 py-2' : classSelectSize %}
+{% set classSelectSize = (size == '') ? 'text-base pl-2 py-2' : classSelectSize %}
+{% set classSelectSize = (size == 'lg') ? 'text-lg pl-2 py-2' : classSelectSize %}
+{% set classSelectSize = (size == 'xl') ? 'text-lg pl-2 py-3' : classSelectSize %}
+
+{% if variant == 'as-link' %}
+    {% set classComponentVariant = 'flex items-center justify-start' %}
+    {% set classSelectVariant = 'border-0 pl-0 pr-0 h-auto appearance-none focus:border-0 focus:ring-0' %}
+    {% set classLabelVariant = 'mb-0 mr-2 shrink-0' %}
+    {% set classArrowVariant = '!w-4 !h-4' %}
+    {% set classLabelColor = 'text-gray' %}
+    {% set classLabelVariant = 'font-bold mb-0 mr-2' %}
+{% endif %}
+
+<div class="{{ classComponentBase }} {{ classComponentColor }} {{ classComponentSize }} {{ classComponentVariant }} {{ cssClasses }}">
+    {% if label %}
+        <label for="{{ attributes.id }}" class="{{ classLabelBase }} {{ classLabelSize }} {{ classLabelColor }} {{ classLabelVariant }}">{{ label }}</label>
+    {% endif %}
+    <div class="{{ classBodyBase }} {{ classBodyColor }} {{ classBodySize }} {{ classBodyVariant }}">
+        <select {% for key, value in attributes %} {{ key }}="{{ value }}" {% endfor %} class="{{ classSelectBase }} {{ classSelectColor }} {{ classSelectSize }} {{ classSelectVariant }}">
+        {% if emptyOption %}
+            <option value="{{ emptyOption|keys|first }}" {% if defaultValue == emptyOption|keys|first %} selected="selected" {% endif %}>{{ emptyOption|first }}</option>
+        {% endif %}
+        {% for value, name in options %}
+            <option value="{{ value }}" {% if defaultValue == value %} selected="selected" {% endif %}>{{ name }}</option>
+        {% endfor %}
+        </select>
+        {% partial "svg-icon/svg-icon" name="chevron-bottom-sharp" cssClasses=classArrowBase~' '~classArrowSize~' '~classArrowColor~' '~classArrowVariant %}
+    </div>
+    <div class="{{ classValidationBase }}" data-validate-for="{{ attributes.name }}"></div>
+</div>

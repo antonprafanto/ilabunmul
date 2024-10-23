@@ -1,0 +1,81 @@
+url = "/"
+title = "New Website"
+==
+function onStart() {
+   $this['domain'] = $_SERVER['SERVER_NAME'];
+}
+==
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ this.theme.site_title }} | {{ domain }}</title>
+    <style>
+    div.parent {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      {% if this.theme.bg_image %}
+        background-image: url('{{ this.theme.bg_image.path }}');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+      {% endif %}
+    }
+    .child { 
+      max-width: 400px;
+      color: {{ this.theme.text_color }};
+      text-align:center; 
+    }
+    
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%;}
+    .parent {
+      background: {{ this.theme.background_color }};
+      padding: 1em;
+      font-family: sans-serif;
+    }
+
+    a {
+      color: {{ this.theme.link_color }};
+    }
+
+    .logo-img {
+      width: {{ this.theme.logo_width }};
+      height: auto;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(200, 200, 200, 0.15);
+    }
+    footer span {
+      opacity: 0.5;
+    }
+    </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="child">
+      {% if this.theme.site_logo %}<img src="{{ this.theme.site_logo.path }}" alt="" class="logo-img">{% endif %}
+      {% if not this.theme.logo_switch %}<h1>{{ this.theme.site_title }}</h1>{% endif %}
+      <p>{{ this.theme.site_subtitle }}</p>
+      <footer>
+        <small><span>&copy; {{ 'now'|date('Y') }}</span> 
+          {% if this.theme.site_link %}<a href="{{ this.theme.site_link }}" target="_blank">{% else %}<span>{% endif %}
+            {{ this.theme.site_copy }}
+          {% if this.theme.site_link %}</a>{% else %}</span>{% endif %}
+        </small>
+      </footer>
+    </div>
+  </body>
+</html>

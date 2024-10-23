@@ -1,0 +1,50 @@
+<form class="grid grid-cols-1 gap-4 {{ cssClasses }}">
+    {% partial "input/input"
+        cssClasses = ""
+        label = ""
+        attributes =
+        {
+            "name" : "name",
+            "id" : "name",
+            "placeholder" : "Your name"
+        } %}
+    {% partial "input/input"
+        cssClasses = ""
+        label = ""
+        attributes =
+        {
+            "name" : "email",
+            "id" : "email",
+            "placeholder" : "Email address"
+        } %}
+    {% partial "input/input"
+        cssClasses = ""
+        label = ""
+        attributes =
+        {
+            "name" : "company",
+            "id" : "company",
+            "placeholder" : "Company"
+        } %}
+    {% partial "textarea/textarea"
+        cssClasses = ""
+        label = ""
+        attributes =
+        {
+            "name" : "comments",
+            "id" : "comments",
+            "placeholder" : "Comments"
+        } %}
+    {% partial "button/button"
+        cssClasses=""
+        tag="button"
+        body="Submit"
+        size=""
+        color="secondary"
+        variant=""
+        attributes = {
+        'type':'submit',
+        'name':'submit',
+        'id':'submit',
+    } %}
+</form>

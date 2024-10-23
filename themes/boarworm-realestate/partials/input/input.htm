@@ -1,0 +1,63 @@
+{# themedoc
+[/themedoc-section-name/]: # (Input)
+
+[/themedoc-section/]:
+Input component.
+
+### Variables
+* {string} **cssClasses** - component css class list.
+* {string} **label** - field label.
+* {array} **attributes** - input tag html attributes.
+
+### Usage
+{% verbatim %}
+    {% partial "input/input"
+        classList = ""
+        label = "Keyword"
+        attributes =
+        {
+            "name" : "keyword",
+            "id" : "keyword",
+            "placeholder" : "Enter keyword(s)"
+        } %}
+{% endverbatim %}
+
+### Examples
+{% partial "input/input"
+    classList = "not-prose"
+    label = "Keyword"
+    attributes =
+    {
+        "name" : "keyword",
+        "id" : "keyword",
+        "placeholder" : "Enter keyword(s)"
+    }
+%}
+#}
+
+{# Base common styles #}
+{% set classComponentBase = 'input relative' %}
+{% set classLabelBase = 'block mb-2' %}
+{% set classInputWrapperBase = 'relative' %}
+{% set classInputBase = 'block font-light leading-normal w-full px-2 border transition focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40' %}
+{% set classValidationBase = 'text-sm mt-1 text-white visible empty:hidden bg-red-500 p-1' %}
+
+{# Default styles #}
+{% set classInputColor = 'border-gray-300' %}
+
+{# Modificators #}
+{% set classInputSize = (size == 'sm') ? 'text-sm px-4 px-4 py-2' : classInputSize %}
+{% set classInputSize = (size == '') ? 'text-base px-4 px-4 py-2' : classInputSize %}
+{% set classInputSize = (size == 'lg') ? 'text-lg px-4 px-4 py-2' : classInputSize %}
+{% set classInputSize = (size == 'xl') ? 'text-lg px-4 px-4 py-3' : classInputSize %}
+{% set classInputColor = (color == 'light') ? 'border-white bg-white' : classInputColor %}
+
+<div class="{{ classComponentBase }} {{ classComponentSize }} {{ classComponentColor }} {{ classComponentVariant }} {{ cssClasses }}">
+    {% if label %}
+        <label for="{{ attributes.id }}" class="{{ classLabelBase }}">{{ label }}</label>
+    {% endif %}
+    <div class="{{ classInputWrapperBase }}">
+        <input {% for key, value in attributes %} {{ key }}="{{ value }}" {% endfor %} class="{{ classInputBase }} {{ classInputSize }} {{ classInputColor }} {{ classInputVariant }}">
+    </div>
+    <div class="{{ classValidationBase }}" data-validate-for="{{ attributes.name }}"></div>
+</div>

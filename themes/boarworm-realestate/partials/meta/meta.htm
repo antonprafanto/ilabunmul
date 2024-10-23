@@ -1,0 +1,44 @@
+{# themedoc
+[/themedoc-section-name/]: # (Meta)
+
+[/themedoc-section/]:
+Site meta tags.
+
+### Variables
+* {string} **title** - meta title.
+* {string} **description** - meta description.
+* {string} **keywords** - meta keywords.
+* {string} **og_image_1200_630** - PNG 1200x630px Open Graph image.
+* {string} **og_image_1200_1200** - PNG 1200x1200px Open Graph image.
+
+### Usage
+{% verbatim %}
+    {% partial "meta/meta"
+        title = "Meta title"
+        description = "Meta description"
+        keywords = "Meta keywords"
+        og_image_1200_630 = "path/to/image"|theme
+        og_image_1200_1200 = "path/to/image"|theme
+    %}
+{% endverbatim %}
+#}
+
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<meta name="keywords" content="{{ keywords }}">
+<meta property="og:url" content="{{ url_current() | lower }}"/>
+<meta property="og:title" content="{{ title }}"/>
+<meta property="og:description" content="{{ description }}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="{{ this.theme.site_name }}"/>
+<meta property="og:updated_time" content="{{ 'now'|date('U') }}">
+<meta property="og:image" content="{{ og_image_1200_630|default('assets/images/og-image-1200x630.png'|theme) }}"/>
+<meta property="og:image:type" content="image/png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="{{ title }}"/>
+<meta property="og:image" content="{{ og_image_1200_1200|default('assets/images/og-image-1200x1200.png'|theme) }}"/>
+<meta property="og:image:type" content="image/png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="1200"/>
+<meta property="og:image:alt" content="{{ title }}"/>

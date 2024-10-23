@@ -1,0 +1,68 @@
+title = "News"
+layout = "default"
+url = "/news"
+==
+{% set page = demoData.pages.news %}
+{% put meta %}
+{% partial "meta/meta"
+    title = page.meta_title
+    description = page.meta_description
+    keywords = page.meta_keywords
+    og_image_1200_630 = ""
+    og_image_1200_1200 = "" %}
+{% endput %}
+{% set breadcrumbs = [
+    {'name':this.page.title,'url':'' }
+] %}
+<div class="container py-10">
+    <div class="mb-8">
+        {% partial "headline/headline"
+            cssClasses = "mb-2"
+            tag = "h1"
+            color = ""
+            size = "h1"
+            text = this.page.title %}
+        {% partial "breadcrumbs/breadcrumbs"
+            cssClasses = ""
+            breadcrumbs = breadcrumbs %}
+    </div>
+    <div class="mb-12 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {% for post in demoData.posts %}
+            {% partial "card-post/card-post"
+                cssClasses = ""
+                title = post.title
+                date = post.published_at
+                url = "news-details"|page({ slug: post.slug })
+                excerpt = post.excerpt
+                image =
+                {
+                    src: post.image|theme,
+                    attributes:
+                    {
+                        "alt": post.title
+                    },
+                    resize:
+                    {
+                        "width": "640",
+                        "height": "360",
+                        "mode": "crop",
+                        "extension": "",
+                        "quality": ""
+                    }
+                }
+            %}
+        {% endfor %}
+    </div>
+    {% partial "pagination/pagination"
+        cssClasses = ""
+        baseUrl = "news"|page()
+        extremePagesLimit = ""
+        nearbyPagesLimit = ""
+        showPrevNext = ""
+        showFirstLast = 1
+        items =
+        {
+            "currentPage":5,
+            "lastPage":10
+        } %}
+</div>

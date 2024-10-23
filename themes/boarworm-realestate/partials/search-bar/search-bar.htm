@@ -1,0 +1,103 @@
+{# themedoc
+[/themedoc-section-name/]: # (Search bar)
+
+[/themedoc-section/]:
+
+### Dependencies
+* [input](#input)
+* [button](#button)
+* [svg-icon](#svg-icon)
+
+### Variables
+* {string} **cssClasses** - component css class list.
+* {array} **input** - input data, accept the same variables as [input](#input).
+* {array} **button** - button data, accept the same variables as [button](#button).
+
+
+* {string} **title** - card title.
+* {string} **url** - card url.
+* {string} **excerpt** - card excerpt (intro text).
+* {array} **image** - card preview image data:
+    * {string} **imgCssClasses** - img tag css class list.
+    * {mixed} **src** - image object or path to the image.
+    * {array} **resize** - resize options:
+        * {string} **width** - resize width.
+        * {string} **height** - resize height.
+        * {string} **mode** - resize mode (default 'crop').
+        * {string} **extension** - resize extension.
+        * {string} **quality** - resize quality (default '80').
+    * {array} **attributes** - img tag html attributes.
+
+### Usage
+{% verbatim %}
+    {% partial "card-post/card-post"
+        cssClasses = ""
+        title = "From its medieval origins to the digital era"
+        date = "October 15, 2023"
+        url = "news-details"|page({ slug:"post" })
+        excerpt = "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+        image =
+        {
+            imgCssClasses: "",
+            src: "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg",
+            resize:
+            {
+                "width": "300",
+                "height": "200",
+                "mode": "crop",
+                "extension": "",
+                "quality": ""
+            },
+            attributes:
+            {
+                "alt": "From its medieval origins to the digital era"
+            }
+        }
+    %}
+{% endverbatim %}
+
+### Examples
+{% partial "search-bar/search-bar"
+    cssClasses = "not-prose"
+    input =
+    {
+        cssClasses: "",
+        label: "",
+        attributes:
+        {
+            "name":"query",
+            "id":"query",
+            "placeholder":"Enter your keywords"
+        }
+    }
+    button =
+    {
+        cssClasses: "!drop-shadow-none !rounded-none absolute right-px h-full",
+        tag: "button",
+        size: "",
+        color: "secondary",
+        variant: "",
+        attributes:
+        {
+            'type':'submit'
+        }
+    }
+%}
+#}
+
+<div class="relative mb-4 flex w-full flex-wrap items-stretch {{ cssClasses }}">
+    {% partial "input/input"
+        cssClasses = input.cssClasses
+        label = input.label
+        attributes = input.attributes %}
+    {% partial "button/button" body
+        cssClasses = button.cssClasses
+        tag = button.tag
+        size = button.size
+        color = button.color
+        variant = button.variant
+        attributes = button.attributes
+    %}
+    {% partial "svg-icon/svg-icon" name="magnifier" cssClasses="w-5 h-5 fill-white" %}
+    {% endpartial %}
+</div>

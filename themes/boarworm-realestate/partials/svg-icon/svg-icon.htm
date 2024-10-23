@@ -1,0 +1,32 @@
+{# themedoc
+[/themedoc-section-name/]: # (SVG icon)
+
+[/themedoc-section/]:
+Outputs a simple svg icon taken from an svg sprite.
+Size and fill color should be added via cssClasses.
+
+### Dependencies
+* file: assets/dist/sprite.svg
+
+### Variables
+* {string} **cssClasses** - component css class list.
+* {string} **name** - svg icon file name without extension.
+
+### Usage
+{% verbatim %}
+    {% partial "svg-icon/svg-icon"
+        cssClasses = "w-10 h-10 transition fill-primary hover:fill-secondary"
+        name="email"
+    %}
+{% endverbatim %}
+
+### Examples
+{% partial "svg-icon/svg-icon"
+    cssClasses = "not-prose w-10 h-10 transition fill-primary hover:fill-secondary"
+    name="email"
+%}
+#}
+
+<svg class="{{ cssClasses }}">
+    <use href="{{ "assets/dist/sprite.svg"|theme }}#icon-{{ name }}"></use>
+</svg>

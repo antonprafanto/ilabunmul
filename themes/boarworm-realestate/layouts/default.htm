@@ -1,0 +1,40 @@
+description = "Default layout"
+
+[staticPage]
+useContent = 0
+default = 1
+==
+<?php
+    function onStart(){
+        $this['demoData'] = json_decode(file_get_contents(themes_path("real-estate/demo-data.json")), TRUE);
+    }
+?>
+==
+{% set isStaticPage = this.page.apiBag.staticPage %}
+{variable type="repeater" name="page_builder" label="" tab="Page builder" prompt="Add new section" groups="~/themes/main/page_builder_layouts.yaml"}{/variable}
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{% partial "head/head" %}
+<body class="p-0 text-default-darkest font-light flex flex-col min-h-screen">
+    {{ this.environment == 'prod' ? this.theme.code_body_start|raw }}
+    {% partial "header/header"
+        cssClasses = ""
+    %}
+    <div class="flex flex-col grow shrink-0 basis-auto">
+        {% if isStaticPage %}
+            <div class="container pt-8 pb-10">
+                {% partial "headline/headline" text=this.page.title tag="h1" color="primary" size="3xl" class="mb-6 md:mb-8 text-center" %}
+                {% partial "page-builder/page-builder" %}
+            </div>
+        {% else %}
+            {% page %}
+        {% endif %}
+    </div>
+    {% partial "footer/footer" %}
+    <script src="{{ 'assets/dist/js/manifest.js'|theme }}"></script>
+    <script src="{{ ['assets/dist/js/vendor.js']|theme }}"></script>
+    <script src="{{ ['assets/dist/js/app.js']|theme }}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ this.theme.google_maps_api_key }}"></script>
+    {{ this.environment == 'prod' ? this.theme.code_body_end|raw }}
+</body>
+</html>

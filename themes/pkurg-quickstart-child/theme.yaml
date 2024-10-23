@@ -1,0 +1,9 @@
+name: 'QuickStart '
+description: 'QuickStart is a Bootstrap template built to power startups, innovative apps, product landing pages, and a range of corporate business websites. It combines a modern design with practical features, offering an optimal blend to elevate your digital presence. '
+author: Vladimir
+homepage: 'https://bootstrapmade.com/quickstart-bootstrap-startup-website-template/'
+authorCode: Pkurg
+code: quickstart
+parent: pkurg-quickstart
+database: '0'
+form: fields.yaml

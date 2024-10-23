@@ -1,0 +1,16 @@
+<div class="swiper w-full group/carousel {{ cssClasses }}">
+    <div class="swiper-wrapper">
+        {{ body|raw }}
+    </div>
+    {% if navigation %}
+        <div class="swiper-button-prev h-10 w-10 p-2 bg-white rounded-full absolute z-10 m-auto inset-y-0 left-2 border inline-block cursor-pointer transition opacity-0 group-hover/carousel:opacity-100 group/button">
+            {% partial "svg-icon/svg-icon" name="chevron-left-sharp" cssClasses="w-full h-full transition group-hover/button:fill-primary" %}
+        </div>
+        <div class="swiper-button-next h-10 w-10 p-2 bg-white rounded-full absolute z-10 m-auto inset-y-0 right-2 border inline-block cursor-pointer transition opacity-0 group-hover/carousel:opacity-100 group/button">
+            {% partial "svg-icon/svg-icon" name="chevron-right-sharp" cssClasses="w-full h-full transition group-hover/button:fill-primary" %}
+        </div>
+    {% endif %}
+    {% if pagination %}
+        <div class="swiper-pagination flex justify-center pt-6"></div>
+    {% endif %}
+</div>

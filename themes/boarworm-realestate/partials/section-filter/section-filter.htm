@@ -1,0 +1,140 @@
+<div class="w-full grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-4 {{ cssClasses }}">
+    {% partial "select/select"
+        cssClasses = ""
+        label = "Contract type"
+        attributes =
+        {
+            "name" : "contract_type",
+            "id" : "contract_type"
+        }
+        emptyOption =
+        {
+            0 : "Please select"
+        }
+        defaultValue = "0"
+        options =
+        {
+            "for-sale" : 'For Sale',
+            "for-rent" : 'For Rent'
+        } %}
+    {% partial "select/select"
+        cssClasses = ""
+        label = "Type"
+        attributes =
+        {
+            "name" : "type",
+            "id" : "type"
+        }
+        emptyOption =
+        {
+            0 : "Please select"
+        }
+        defaultValue = "0"
+        options =
+        {
+            "residential" : 'Residential',
+            "apartment" : 'Apartment',
+            "condominium" : 'Condominium',
+            "commercial" : 'Commercial',
+            "land" : 'Land',
+        } %}
+    {% partial "select/select"
+        cssClasses = ""
+        label = "Location"
+        attributes =
+        {
+            "name" : "location",
+            "id" : "location"
+        }
+        emptyOption =
+        {
+            0 : "Please select"
+        }
+        defaultValue = "0"
+        options =
+        {
+            "california" : 'California',
+            "texas" : 'Texas',
+            "florida" : 'Florida'
+        } %}
+    {% partial "select/select"
+        cssClasses = ""
+        label = "Bedrooms"
+        attributes =
+        {
+            "name" : "bedrooms",
+            "id" : "bedrooms"
+        }
+        emptyOption =
+        {
+            0 : "Please select"
+        }
+        defaultValue = "0"
+        options =
+        {
+            "1" : '1',
+            "2" : '2',
+            "3" : '3',
+            "4" : '4',
+            "5" : '5',
+            "6" : '6'
+        } %}
+    {% partial "select/select"
+        cssClasses = ""
+        label = "Min price"
+        attributes =
+        {
+            "name" : "min-price",
+            "id" : "min-price"
+        }
+        emptyOption =
+        {
+            0 : "Please select"
+        }
+        defaultValue = "0"
+        options =
+        {
+            "1000" : '$1,000',
+            "5000" : '$5,000',
+            "10000" : '$10,000'
+        } %}
+    {% partial "select/select"
+        cssClasses = ""
+        label = "Max price"
+        attributes =
+        {
+            "name" : "max-price",
+            "id" : "max-price"
+        }
+        emptyOption =
+        {
+            0 : "Please select"
+        }
+        defaultValue = "0"
+        options =
+        {
+            "1000" : '$1,000',
+            "5000" : '$5,000',
+            "10000" : '$10,000'
+        } %}
+    {% partial "input/input"
+        cssClasses = ""
+        label = "Keyword"
+        attributes =
+        {
+            "name" : "keyword",
+            "id" : "keyword",
+            "placeholder" : "Enter keyword(s)"
+        } %}
+    {% partial "button/button"
+        cssClasses = "self-end h-[42px]"
+        tag = "button"
+        body = "Search"
+        size = ""
+        color = "primary"
+        variant = ""
+        attributes =
+        {
+            "type": "submit"
+        } %}
+</div>

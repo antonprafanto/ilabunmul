@@ -1,0 +1,10 @@
+{% for block in blocks %}
+    <div>
+        {% if block._group == "richeditor_block" %}
+            <div class="prose prose-sm">{{ block.content|raw }}</div>
+        {% endif %}
+        {% if block._group == "code_block" %}
+            {{ block.content|raw }}
+        {% endif %}
+    </div>
+{% endfor %}

@@ -1,0 +1,25 @@
+{% set width = imageSettings.width %}
+{% set widths = imageSettings.widths %}
+{% set sizes = imageSettings.sizes %}
+{% set imagePath = image.path %}
+{% set imageDescription = image.description %}
+
+<div class="item">
+    <img
+        style="width:100%;height:auto;"
+        width="16"
+        height="9"
+        src="{{ imagePath|resize(width, auto, { mode: 'exact' }) }}"
+        srcset="
+            {% for width in imageSettings.widths %}
+                {% if not loop.last %}
+                    {{ imagePath|resize(width, auto, { mode: 'exact' }) }} {{ width }}w,
+                    {{ imagePath|resize(width*2, auto, { mode: 'exact' }) }} {{ width*2 }}w,
+                {% else %}
+                    {{ imagePath|resize(width, auto, { mode: 'exact' }) }} {{ width }}w,
+                    {{ imagePath|resize(width*2, auto, { mode: 'exact' }) }} {{ width*2 }}w
+                {% endif %}
+            {% endfor %}"
+        sizes="{{ sizes }}"
+        alt="{{ imageDescription }}">
+</div>

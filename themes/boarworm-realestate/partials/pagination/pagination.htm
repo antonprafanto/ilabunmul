@@ -1,0 +1,152 @@
+{#themedoc
+[/themedoc-section-name/]: # (Pagination)
+
+[/themedoc-section/]:
+### Dependencies
+* [svg-icon](#svg-icon)
+
+### Variables:
+* {string} **cssClasses** - list of additional css classes.
+* {string} **baseUrl** - base url, usually the url of the page on which pagination is displayed.
+* {string} **extremePagesLimit** - the number of first and last pages to be displayed (default: 1).
+* {string} **nearbyPagesLimit** - the number of pages that are displayed around the active page (default: 1).
+* {string} **showPrevNext** - show or hide prev/next buttons (default: true).
+* {string} **showFirstLast** - show or hide first/last buttons (default: false).
+* {array} **items** - array containing 'currentPage' number and 'lastPage' number. Usually it's a collection obtained using paginate() method.
+
+### Usage example:
+{% verbatim %}
+    {% partial "pagination/pagination"
+        cssClasses = "not-prose"
+        baseUrl = "current-page-url"
+        extremePagesLimit = ""
+        nearbyPagesLimit = ""
+        showPrevNext = ""
+        showFirstLast = 1
+        items =
+        {
+            "currentPage":5,
+            "lastPage":10
+        }
+    %}
+{% endverbatim %}
+
+### Examples
+{% partial "pagination/pagination"
+    cssClasses = "not-prose"
+    baseUrl = "current-page-url"
+    extremePagesLimit = ""
+    nearbyPagesLimit = ""
+    showPrevNext = ""
+    showFirstLast = 1
+    items =
+    {
+        "currentPage":5,
+        "lastPage":10
+    }
+%}
+#}
+
+{% set extremePagesLimit = extremePagesLimit|default(1) %}
+{% set nearbyPagesLimit = nearbyPagesLimit|default(1) %}
+{% set showPrevNext = showPrevNext|default(true) %}
+{% set showFirstLast = showFirstLast|default(false) %}
+
+{% set classItem = 'text-white p-0 w-8 h-8 no-underline text-center cursor-pointer box-border flex items-center justify-center transition bg-primary hover:bg-secondary md:w-10 md:h-10' %}
+{% set classActive = 'bg-secondary cursor-not-allowed' %}
+{% set classDisabled = '!bg-gray-300 cursor-not-allowed' %}
+{% set classPrevNext = 'text-white p-0 w-8 h-8 no-underline text-center cursor-pointer box-border flex items-center justify-center transition bg-primary hover:bg-secondary md:w-10 md:h-10' %}
+{% set classFirstLast = 'text-white p-0 w-8 h-8 no-underline text-center cursor-pointer box-border flex items-center justify-center transition bg-primary hover:bg-secondary md:w-10 md:h-10' %}
+{% set classDots = 'text-primary p-0 w-8 h-8 no-underline text-center box-border flex items-center justify-center md:w-10 md:h-10' %}
+
+{% if items.lastPage > 1 %}
+    <ul class="flex justify-center {{ cssClasses }}">
+        {% if showFirstLast %}
+            <li>
+                <a href="{{ baseUrl }}" class="{{ classFirstLast }} {{ items.currentPage == 1 ? classDisabled }}" title="Go to first page">
+                    {% partial "svg-icon/svg-icon" name="double-chevron-left" cssClasses="w-4 h-4 fill-white" %}
+                </a>
+            </li>
+        {% endif %}
+        {% if showPrevNext %}
+            <li>
+                {% if items.currentPage == 1 %}
+                    <span class="{{ classPrevNext }} {{ classDisabled }}">
+                        {% partial "svg-icon/svg-icon" name="chevron-left" cssClasses="w-4 h-4 fill-white" %}
+                    </span>
+                {% else %}
+                    <a href="{{ baseUrl }}{{ items.currentPage == 2 ? '' : '/'~(items.currentPage-1) }}{{ get() ? '?'~get()|url_encode }}" class="{{ classPrevNext }}" title="Go to previous page">
+                        {% partial "svg-icon/svg-icon" name="chevron-left" cssClasses="w-4 h-4 fill-white" %}
+                    </a>
+                {% endif %}
+            </li>
+        {% endif %}
+
+        {% for i in range(1, extremePagesLimit) %}
+            {% if ( i < items.currentPage - nearbyPagesLimit ) %}
+                <li>
+                    <a href="{{ baseUrl }}{{ i == 1 ? '' : '/'~i }}{{ get() ? '?'~get()|url_encode }}" class="{{ classItem }}" title="Go to page {{ i }}">{{ i }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if extremePagesLimit + 1 < items.currentPage - nearbyPagesLimit %}
+            <span class="{{ classDots }}">...</span>
+        {% endif %}
+
+        {% for i in range(items.currentPage-nearbyPagesLimit, items.currentPage-1) %}
+            {% if ( i > 0 ) %}
+                <li class="pagination__item">
+                    <a href="{{ baseUrl }}{{ i == 1 ? '' : '/'~i }}{{ get() ? '?'~get()|url_encode }}" class="{{ classItem }}" title="Go to page {{ i }}">{{ i }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+
+        <li>
+            <span class="{{ classItem }} {{ classActive }}">{{ items.currentPage }}</span>
+        </li>
+
+        {% for i in range(items.currentPage+1, items.currentPage + nearbyPagesLimit) %}
+            {% if ( i <= items.lastPage ) %}
+                <li class="pagination__item">
+                    <a href="{{ baseUrl }}{{ i == 1 ? '' : '/'~i }}{{ get() ? '?'~get()|url_encode }}" class="{{ classItem }}" title="Go to page {{ i }}">{{ i }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if  (items.lastPage - extremePagesLimit) > (items.currentPage + nearbyPagesLimit) %}
+            <span class="{{ classDots }}">...</span>
+        {% endif %}
+
+        {% for i in range(items.lastPage - extremePagesLimit+1, items.lastPage) %}
+            {% if ( i > items.currentPage + nearbyPagesLimit ) %}
+                <li class="pagination__item">
+                    <a href="{{ baseUrl }}{{ i == 1 ? '' : '/'~i }}{{ get() ? '?'~get()|url_encode }}" class="{{ classItem }}" title="Go to page {{ i }}">{{ i }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if showPrevNext %}
+            <li>
+                {% if items.currentPage == items.lastPage %}
+                    <span class="{{ classPrevNext }} {{ classDisabled }}">
+						{% partial "svg-icon/svg-icon" name="chevron-right" cssClasses="w-4 h-4 fill-white" %}
+					</span>
+                {% else %}
+                    <a href="{{ baseUrl }}/{{ items.currentPage + 1 }}{{ get() ? '?'~get()|url_encode }}" class="{{ classPrevNext }}" title="Go to next page">
+                        {% partial "svg-icon/svg-icon" name="chevron-right" cssClasses="w-4 h-4 fill-white" %}
+                    </a>
+                {% endif %}
+            </li>
+        {% endif %}
+
+        {% if showFirstLast %}
+            <li class="pagination__last">
+                <a href="{{ baseUrl }}/{{ items.lastPage }}{{ get() ? '?'~get()|url_encode }}" class="{{ classFirstLast }}" title="Go to last page">
+                    {% partial "svg-icon/svg-icon" name="double-chevron-right" cssClasses="w-4 h-4 fill-white" %}
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+{% endif %}

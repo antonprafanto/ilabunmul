@@ -1,0 +1,153 @@
+{# themedoc
+[/themedoc-section-name/]: # (Banner)
+
+[/themedoc-section/]:
+Display banner with image as background, title, text, and two buttons.
+
+### Dependencies
+* [button](#button)
+
+### Variables
+* {string} **cssClasses** - component css class list.
+* {string} **titlePartOne** - title part one.
+* {string} **titlePartTwo** - title part two.
+* {string} **text** - banner text.
+* {array} **button1** - first button data, accept the same variables as [button](#button).
+* {array} **button1** - second button data, accept the same variables as [button](#button).
+* {array} **image** - card preview image, accept the same data as [image](#image).
+
+### Usage
+{% verbatim %}
+    {% partial "banner/banner"
+        cssClasses = ""
+        titleOne = "Discover Your"
+        titleTwo = "Dream Home Today"
+        text = "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+        image =
+        {
+            imgCssClasses: "",
+            src: "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg",
+            attributes:
+            {
+                "alt": "Discover Your Dream Home Today"
+            },
+            resize:
+            {
+                "width": "1920",
+                "height": "1080",
+                "mode": "crop",
+                "extension": "",
+                "quality": ""
+            }
+        }
+        button1 =
+        {
+            cssClasses: "",
+            tag: "a",
+            body: "Get started",
+            size: "",
+            color: "primary",
+            variant: "",
+            attributes:
+            {
+                'href':'#get-started'
+            }
+        }
+        button2 =
+        {
+            cssClasses: "",
+            tag: "a",
+            body: "Learn more",
+            size: "",
+            color: "secondary",
+            variant: "",
+            attributes:
+            {
+                'href':'#learn-more'
+            }
+        }
+    %}
+{% endverbatim %}
+
+### Examples
+{% partial "banner/banner"
+    cssClasses = "not-prose"
+    titleOne = "Discover Your"
+    titleTwo = "Dream Home Today"
+    text = "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+    image =
+    {
+        imgCssClasses: "",
+        src: "https://images.freeimages.com/images/large-previews/155/red-starfish-1162380.jpg",
+        attributes:
+        {
+            "alt": "Discover Your Dream Home Today"
+        },
+        resize:
+        {
+            "width": "1920",
+            "height": "1080",
+            "mode": "crop",
+            "extension": "",
+            "quality": ""
+        }
+    }
+    button1 =
+    {
+        cssClasses: "",
+        tag: "a",
+        body: "Get started",
+        size: "",
+        color: "primary",
+        variant: "",
+        attributes:
+        {
+            'href':'#get-started'
+        }
+    }
+    button2 =
+    {
+        cssClasses: "",
+        tag: "a",
+        body: "Learn more",
+        size: "",
+        color: "secondary",
+        variant: "",
+        attributes:
+        {
+            'href':'#learn-more'
+        }
+    }
+%}
+#}
+
+<section class="relative bg-cover bg-center bg-no-repeat {{ cssClasses }}" style="background-image: url('{{ image.src|resize(image.resize.width, image.resize.height, {mode:image.resize.mode|default('crop'),'extension':image.resize.extension}) }}')">
+    <div class="absolute inset-0 bg-white/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/95 sm:to-white/25"></div>
+    <div class="relative container py-16 lg:flex lg:h-screen lg:items-center">
+        <div class="max-w-2xl text-center sm:text-left">
+            <div class="text-3xl font-bold sm:text-5xl lg:text-6xl">
+                <div class="block font-bold text-default-darker">{{ titleOne }}</div>
+                <div class="block font-bold text-secondary">{{ titleTwo }}</div>
+            </div>
+            <div class="mt-4 sm:text-xl sm:leading-relaxed">{{ text }}</div>
+            <div class="mt-8 flex flex-wrap gap-4 justify-center sm:justify-start">
+                {% partial "button/button"
+                    cssClasses=""
+                    tag=button1.tag
+                    body=button1.body
+                    size=button1.size
+                    color=button1.color
+                    variant=button1.variant
+                    attributes = button1.attributes %}
+                {% partial "button/button"
+                    cssClasses=""
+                    tag=button2.tag
+                    body=button2.body
+                    size=button2.size
+                    color=button2.color
+                    variant=button2.variant
+                    attributes = button2.attributes %}
+            </div>
+        </div>
+    </div>
+</section>

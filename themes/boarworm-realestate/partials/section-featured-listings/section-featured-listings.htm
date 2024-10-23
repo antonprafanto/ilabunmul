@@ -1,0 +1,33 @@
+<div class="grid gap-y-12 gap-x-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-8 {{ cssClasses }}">
+    {% for listing in demoData.listings %}
+        {% partial "card-listing/card-listing"
+            cssClasses = ""
+            title = listing.title
+            url = "listings-details"|page({ slug: listing.slug })
+            contract_type = listing.contract_type
+            address = listing.address
+            status = listing.status
+            price = "$"~listing.price|number_format(0,'.',',')
+            lot_size = listing.lot_size~" SqFt"
+            bedrooms = listing.bedrooms
+            bathrooms = listing.bathrooms
+            image =
+            {
+                imgCssClasses: "",
+                src: listing.image|theme,
+                attributes:
+                {
+                    "alt": listing.title
+                },
+                resize:
+                {
+                    'width':'640',
+                    'height':'360',
+                    "mode": "crop",
+                    "extension": "",
+                    "quality": ""
+                }
+            }
+        %}
+    {% endfor %}
+</div>

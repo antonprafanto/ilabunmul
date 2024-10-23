@@ -1,0 +1,8 @@
+{
+    "name": "pkurg/quickstart-theme",
+    "type": "october-theme",
+    "description": "QuickStart is a Bootstrap template built to power startups, innovative apps, product landing pages, and a range of corporate business websites. It combines a modern design with practical features, offering an optimal blend to elevate your digital presence. ",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

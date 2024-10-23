@@ -1,0 +1,85 @@
+title = "Contact us"
+layout = "default"
+url = "/contact-us"
+==
+{% set page = demoData.pages.contact_us %}
+{% put meta %}
+{% partial "meta/meta"
+    title = page.meta_title
+    description = page.meta_description
+    keywords = page.meta_keywords
+    og_image_1200_630 = ""
+    og_image_1200_1200 = "" %}
+{% endput %}
+{% set breadcrumbs = [
+    {'name':this.page.title,'url':'' }
+] %}
+<div class="container py-10">
+    <div class="mb-8">
+        {% partial "headline/headline"
+            cssClasses = "mb-2"
+            tag = "h1"
+            color = ""
+            size = "h1"
+            variation = ""
+            text = this.page.title %}
+        {% partial "breadcrumbs/breadcrumbs"
+            cssClasses = ""
+            breadcrumbs = breadcrumbs %}
+    </div>
+    <div class="flex flex-col gap-y-8 gap-x-2 py-8 md:flex-row md:justify-between">
+        {% if this.theme.contact_addresses|length %}
+            <div class="flex flex-col items-center">
+                {% partial "svg-icon/svg-icon" name="pin" cssClasses="w-8 h-8 fill-secondary mb-2" %}
+                <div class="text-lg font-medium mb-2">Address</div>
+                {% for contact in this.theme.contact_addresses %}
+                    <div class="text-center mb-2 last:mb-0">
+                        {{ contact.address }} {{ contact.description ? "("~contact.description~")" }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if this.theme.contact_phones|length %}
+            <div class="flex flex-col items-center">
+                {% partial "svg-icon/svg-icon" name="mobile" cssClasses="w-8 h-8 fill-secondary mb-2" %}
+                <div class="text-lg font-medium mb-2">Phone</div>
+                {% for contact in this.theme.contact_phones %}
+                    <div class="text-center mb-2 last:mb-0">
+                        <a href="tel:{{ contact.phone|replace({'(':'',')':'',' ':'','.':'','-':''}) }}" class="transition hover:text-primary">
+                            {{ contact.phone }}
+                        </a>
+                        {{ contact.description ? "("~contact.description~")" }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if this.theme.contact_emails|length %}
+            <div class="flex flex-col items-center">
+                {% partial "svg-icon/svg-icon" name="email" cssClasses="w-8 h-8 fill-secondary mb-2" %}
+                <div class="text-lg font-medium mb-2">Email</div>
+                {% for contact in this.theme.contact_emails %}
+                    <div class="text-center mb-2 last:mb-0">
+                        <a href="mailto:{{ contact.email }}" class="transition hover:text-primary">
+                            {{ contact.email }}
+                        </a>
+                        {{ contact.description ? "("~contact.description~")" }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="bg-gray-50 py-16">
+    <div class="container flex flex-col items-center">
+        {% partial "headline/headline"
+            cssClasses = "mb-16"
+            tag = "h2"
+            color = ""
+            size = "h2"
+            variation = "with-image"
+            text = "Leave a Message" %}
+        {% partial "form-contact-us/form-contact-us"
+            cssClasses = "w-full max-w-4xl m-auto" %}
+    </div>
+</div>

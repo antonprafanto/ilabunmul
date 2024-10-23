@@ -1,0 +1,36 @@
+title = "Error 404 - page not found"
+layout = "default"
+url = "/404"
+==
+{% set page = demoData.pages.404 %}
+{% put meta %}
+{% partial "meta/meta"
+    title = page.meta_title
+    description = page.meta_description
+    keywords = page.meta_keywords
+    og_image_1200_630 = ""
+    og_image_1200_1200 = "" %}
+{% endput %}
+{% set breadcrumbs = [
+    {'name':this.page.title,'url':'' }
+] %}
+<div class="container py-10">
+    <div class="mb-8">
+        {% partial "headline/headline"
+            cssClasses = "mb-2"
+            tag = "h1"
+            color = ""
+            size = "h1"
+            text = this.page.title %}
+        {% partial "breadcrumbs/breadcrumbs"
+            cssClasses = ""
+            breadcrumbs = breadcrumbs %}
+    </div>
+    <a href="/" class="mb-10 max-w-[500px] block">
+        <img class="w-full h-auto" src="{{ 'assets/images/404.svg'|theme }}" alt="{{ this.page.title }}" title="{{ this.page.title }}">
+    </a>
+    <div class="prose">
+        <p>Sorry, the page you were looking for does not exist or is not available.<br>Back to <a href="/">home page</a>
+        </p>
+    </div>
+</div>

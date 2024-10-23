@@ -1,0 +1,511 @@
+{
+    "navigation": {
+        "main": [
+            {
+                "title": "Home",
+                "url": "/"
+            },
+            {
+                "title": "Listings",
+                "url": "/listings",
+                "items": [
+                    {
+                        "title": "Listings details",
+                        "url": "/listings/listings-details"
+                    }
+                ]
+            },
+            {
+                "title": "Our team",
+                "url": "/team",
+                "items": [
+                    {
+                        "title": "Team member",
+                        "url": "/team/team-details"
+                    }
+                ]
+            },
+            {
+                "title": "News",
+                "url": "/news",
+                "items": [
+                    {
+                        "title": "Nest details",
+                        "url": "/news/news-details"
+                    }
+                ]
+            },
+            {
+                "title": "Pages",
+                "url": "",
+                "items": [
+                    {
+                        "title": "About us",
+                        "url": "/about-us"
+                    },
+                    {
+                        "title": "404",
+                        "url": "/404"
+                    },
+                    {
+                        "title": "Maintenance",
+                        "url": "/maintenance"
+                    }
+                ]
+            },
+            {
+                "title": "Contact us",
+                "url": "/contact-us"
+            }
+        ],
+        "footer": [
+            {
+                "title": "Home",
+                "url": "/"
+            },
+            {
+                "title": "Listings",
+                "url": "/listings",
+                "items": [
+                    {
+                        "title": "Listings details",
+                        "url": "/listings/listings-details"
+                    }
+                ]
+            },
+            {
+                "title": "Our team",
+                "url": "/team",
+                "items": [
+                    {
+                        "title": "Team member",
+                        "url": "/team/team-details"
+                    }
+                ]
+            },
+            {
+                "title": "News",
+                "url": "/news",
+                "items": [
+                    {
+                        "title": "Nest details",
+                        "url": "/news/news-details"
+                    }
+                ]
+            },
+            {
+                "title": "Pages",
+                "url": "",
+                "items": [
+                    {
+                        "title": "About us",
+                        "url": "/about-us"
+                    },
+                    {
+                        "title": "404",
+                        "url": "/404"
+                    },
+                    {
+                        "title": "Maintenance",
+                        "url": "/maintenance"
+                    }
+                ]
+            },
+            {
+                "title": "Contact us",
+                "url": "/contact-us"
+            }
+        ]
+    },
+    "about": {
+        "title": "Welcome to Our Real Estate Company",
+        "text": "We are a team of experienced real estate agents committed to helping you find your dream home. Whether you are buying, selling, or renting, we are here to guide you every step of the way. With our extensive knowledge of the local real estate market and personalized approach, we are confident that we can help you achieve your real estate goals."
+    },
+    "reviews": [
+        {
+            "title": "John Smith",
+            "text": "I had a great experience using this website to search for my new home. The search filters were easy to use and helped me find exactly what I was looking for.",
+            "image": "assets/images/demo/review-4.jpg"
+        },
+        {
+            "title": "Karen Johnson",
+            "text": "I was able to find my dream home thanks to this website. The listings were up-to-date and the photos were accurate, which made my search much easier.",
+            "image": "assets/images/demo/review-2.jpg"
+        },
+        {
+            "title": "David Brown",
+            "text": "I had a great experience working with the agents on this website. They were knowledgeable, professional, and helped me find the perfect home for me and my family.",
+            "image": "assets/images/demo/review-6.jpg"
+        },
+        {
+            "title": "Emily Davis",
+            "text": "The search tools on this website were very helpful in narrowing down my options and finding the right home for me. I would definitely recommend this site to anyone in the market for a new home.",
+            "image": "assets/images/demo/review-1.jpg"
+        },
+        {
+            "title": "Daniel Kim",
+            "text": "I was impressed with the level of customer service I received from the agents on this website. They were always available to answer my questions and provide guidance throughout the home buying process.",
+            "image": "assets/images/demo/review-5.jpg"
+        },
+        {
+            "title": "Sarah Jones",
+            "text": "This website made it easy for me to find the perfect rental property. The search filters were very helpful in narrowing down my options, and the listings were accurate and up-to-date.",
+            "image": "assets/images/demo/review-3.jpg"
+        }
+    ],
+    "team": [
+        {
+            "title": "Mark Thompson",
+            "position": "Real Estate Agent",
+            "phone": "+297 1234 567",
+            "email": "teammember@site.com",
+            "socials": {
+                "facebook": "https://facebook.com",
+                "instagram": "https://instagram.com",
+                "twitter": "https://twitter.com"
+            },
+            "image": "assets/images/demo/team-member-1.jpg"
+        },
+        {
+            "title": "Rachel Cooper",
+            "position": "Property Manager",
+            "phone": "+297 1234 567",
+            "email": "teammember@site.com",
+            "socials": {
+                "facebook": "https://facebook.com",
+                "instagram": "https://instagram.com"
+            },
+            "image": "assets/images/demo/team-member-8.jpg"
+        },
+        {
+            "title": "Matthew Davis",
+            "position": "Mortgage Broker",
+            "phone": "+297 1234 567",
+            "email": "teammember@site.com",
+            "socials": {
+                "facebook": "https://facebook.com"
+            },
+            "image": "assets/images/demo/team-member-2.jpg"
+        },
+        {
+            "title": "Laura Rodriguez",
+            "position": "Escrow Officer",
+            "phone": "+297 1234 567",
+            "email": "teammember@site.com",
+            "socials": {
+                "facebook": "https://facebook.com",
+                "instagram": "https://instagram.com",
+                "twitter": "https://twitter.com",
+                "linkedin": "https://linkedin.com"
+            },
+            "image": "assets/images/demo/team-member-5.jpg"
+        },
+        {
+            "title": "Tyler Nguyen",
+            "position": "Real Estate Appraiser",
+            "phone": "+297 1234 567",
+            "email": "teammember@site.com",
+            "socials": {
+                "facebook": "https://facebook.com",
+                "instagram": "https://instagram.com",
+                "twitter": "https://twitter.com",
+                "linkedin": "https://linkedin.com"
+            },
+            "image": "assets/images/demo/team-member-3.jpg"
+        },
+        {
+            "title": "Samantha Patel",
+            "position": "Marketing Coordinator",
+            "phone": "+297 1234 567",
+            "email": "teammember@site.com",
+            "socials": {
+                "facebook": "https://facebook.com",
+                "instagram": "https://instagram.com",
+                "twitter": "https://twitter.com",
+                "linkedin": "https://linkedin.com"
+            },
+            "image": "assets/images/demo/team-member-6.jpg"
+        },
+        {
+            "title": "Madison Lee",
+            "position": "Commercial Real Estate Broker",
+            "phone": "+297 1234 567",
+            "email": "teammember@site.com",
+            "socials": {
+                "facebook": "https://facebook.com",
+                "instagram": "https://instagram.com",
+                "twitter": "https://twitter.com",
+                "linkedin": "https://linkedin.com"
+            },
+            "image": "assets/images/demo/team-member-7.jpg"
+        },
+        {
+            "title": "Brandon Garcia",
+            "position": "Home Inspector",
+            "phone": "+297 1234 567",
+            "email": "teammember@site.com",
+            "socials": {
+                "facebook": "https://facebook.com",
+                "instagram": "https://instagram.com",
+                "twitter": "https://twitter.com",
+                "linkedin": "https://linkedin.com"
+            },
+            "image": "assets/images/demo/team-member-4.jpg"
+        }
+    ],
+    "listings": [
+        {
+            "title": "Cozy 2-Bedroom Apartment in Downtown",
+            "slug": "listings-details",
+            "published_at": "2023-06-07 16:25:00",
+            "contract_type": "For Sale",
+            "type": "Apartment",
+            "area": "Los Angeles",
+            "address": "123 Main St, Unit 4, Los Angeles, USA",
+            "status": "Reduced in price",
+            "price": 500000,
+            "lot_size": 120,
+            "built_up_size": 160,
+            "year_built": 2010,
+            "pool": true,
+            "coordinates": "34.02572809625648, -118.77342507150972",
+            "bedrooms": "2",
+            "bathrooms": "2",
+            "description": "<p>Looking for a cozy and comfortable apartment in the heart of the city? Look no further than this charming 2-bedroom apartment located in downtown. With its convenient location, you'll have easy access to all the best shops, restaurants, and entertainment that the city has to offer.</p>\n        <p>As soon as you step inside the apartment, you'll be greeted with a warm and welcoming atmosphere. The spacious living area is filled with natural light and features hardwood floors that add a touch of elegance to the space. The open layout of the apartment provides plenty of room for entertaining guests or relaxing after a long day at work.</p>\n        <p>The apartment also boasts a modern kitchen with all the appliances you need to prepare your favorite meals. Whether you're a seasoned chef or a beginner cook, you'll love the convenience and functionality of the kitchen. And when you're ready to unwind, you can step out onto the private balcony and take in the stunning views of the city skyline.</p>",
+            "video": "",
+            "image": "assets/images/demo/listing-1.jpg",
+            "images": [
+                {
+                    "path": "/themes/real-estate/assets/images/demo/listing-details-1.jpg",
+                    "alt": "Cozy 2-Bedroom Apartment in Downtown"
+                },
+                {
+                    "path": "/themes/real-estate/assets/images/demo/listing-details-2.jpg",
+                    "alt": "Cozy 2-Bedroom Apartment in Downtown"
+                },
+                {
+                    "path": "/themes/real-estate/assets/images/demo/listing-details-3.jpg",
+                    "alt": "Cozy 2-Bedroom Apartment in Downtown"
+                },
+                {
+                    "path": "/themes/real-estate/assets/images/demo/listing-details-4.jpg",
+                    "alt": "Cozy 2-Bedroom Apartment in Downtown"
+                },
+                {
+                    "path": "/themes/real-estate/assets/images/demo/listing-details-5.jpg",
+                    "alt": "Cozy 2-Bedroom Apartment in Downtown"
+                },
+                {
+                    "path": "/themes/real-estate/assets/images/demo/listing-details-6.jpg",
+                    "alt": "Cozy 2-Bedroom Apartment in Downtown"
+                },
+                {
+                    "path": "/themes/real-estate/assets/images/demo/listing-details-7.jpg",
+                    "alt": "Cozy 2-Bedroom Apartment in Downtown"
+                },
+                {
+                    "path": "/themes/real-estate/assets/images/demo/listing-details-8.jpg",
+                    "alt": "Cozy 2-Bedroom Apartment in Downtown"
+                }
+            ]
+        },
+        {
+            "title": "Spacious 4-Bedroom House with Pool",
+            "slug": "listings-details",
+            "contract_type": "For rent",
+            "address": "456 Elm St, Los Angeles, USA",
+            "status": "Rented",
+            "price": 2000,
+            "lot_size": 280,
+            "bedrooms": "4",
+            "bathrooms": "5",
+            "image": "assets/images/demo/listing-2.jpg"
+        },
+        {
+            "title": "Charming 3-Bedroom Bungalow",
+            "slug": "listings-details",
+            "contract_type": "For rent",
+            "address": "789 Oak St, Los Angeles, USA",
+            "status": "",
+            "price": 1600,
+            "lot_size": 210,
+            "bedrooms": "3",
+            "bathrooms": "2",
+            "image": "assets/images/demo/listing-3.jpg"
+        },
+        {
+            "title": "Modern 1-Bedroom Condo with Ocean View",
+            "slug": "listings-details",
+            "contract_type": "For rent",
+            "address": "101 Beach Blvd, Unit 2A, Los Angeles, USA",
+            "status": "New listing",
+            "price": 2400,
+            "lot_size": 110,
+            "bedrooms": "1",
+            "bathrooms": "2",
+            "image": "assets/images/demo/listing-4.jpg"
+        },
+        {
+            "title": "Cozy Studio in Historic Building",
+            "slug": "listings-details",
+            "contract_type": "For sale",
+            "address": "222 Main St, Unit 7, Los Angeles, USA",
+            "status": "",
+            "price": 470000,
+            "lot_size": 90,
+            "bedrooms": "2",
+            "bathrooms": "1",
+            "image": "assets/images/demo/listing-5.jpg"
+        },
+        {
+            "title": "Luxurious 5-Bedroom Estate with Panoramic Views",
+            "slug": "listings-details",
+            "contract_type": "For sale",
+            "address": "333 Hilltop Dr, Los Angeles, USA",
+            "status": "New listing",
+            "price": 960000,
+            "lot_size": 260,
+            "bedrooms": "5",
+            "bathrooms": "6",
+            "image": "assets/images/demo/listing-6.jpg"
+        }
+    ],
+    "posts": [
+        {
+            "title": "Top 5 Tips for First-Time Homebuyers",
+            "published_at": "2023-03-07 11:10:00",
+            "slug": "post",
+            "excerpt": "If you're a first-time homebuyer, the process of buying a home can be overwhelming. However, with the right tips, you can navigate the process with ease. In this blog post, we'll share our top 5 tips for first-time homebuyers, including how to get pre-approved for a mortgage, how to find a real estate agent, and how to negotiate an offer.",
+            "content": "<p>Buying your first home can be an exciting, yet overwhelming experience. With so many options and decisions to make, it's important to be prepared and informed before taking the plunge. Here are our top five tips for first-time homebuyers:</p>\n  <ol>\n    <li><strong>Get pre-approved for a mortgage:</strong> Knowing how much you can afford will help narrow down your search and prevent disappointment.</li>\n    <li><strong>Work with a trusted real estate agent:</strong> A good agent can help guide you through the process and negotiate on your behalf.</li>\n    <li><strong>Research neighborhoods:</strong> Consider factors like commute times, school districts, and nearby amenities to find the right fit.</li>\n    <li><strong>Don't overlook hidden costs:</strong> Expenses like closing costs, inspections, and taxes can add up quickly. Be sure to budget accordingly.</li>\n    <li><strong>Think long-term:</strong> Your first home may not be your forever home, but it's important to consider factors like resale value and potential for appreciation.</li>\n  </ol>\n  <p>By following these tips, you can make the homebuying process smoother and more successful. Happy house hunting!</p>",
+            "image": "assets/images/demo/blog-post-1.jpg"
+        },
+        {
+            "title": "Investing in Real Estate: Is it Right for You?",
+            "published_at": "2023-03-10 11:10:00",
+            "slug": "post",
+            "excerpt": "Real estate can be a lucrative investment opportunity, but it's not for everyone. In this blog post, we'll discuss the pros and cons of investing in real estate, including the potential for long-term financial gain, the risks involved, and the necessary time and effort required. We'll also offer tips for determining if real estate investing is the right choice for you.",
+            "image": "assets/images/demo/blog-post-2.jpg"
+        },
+        {
+            "title": "The Pros and Cons of Buying vs. Renting",
+            "published_at": "2023-03-13 11:10:00",
+            "slug": "post",
+            "excerpt": "Deciding whether to buy or rent a home can be a difficult decision. There are pros and cons to both options, and what works for one person may not work for another. In this blog post, we'll weigh the pros and cons of buying vs. renting a home, so you can make an informed decision based on your lifestyle and financial situation.",
+            "image": "assets/images/demo/blog-post-3.jpg"
+        },
+        {
+            "title": "Maximizing Your Home's Value: Top Renovations to Consider",
+            "published_at": "2023-03-16 11:10:00",
+            "slug": "post",
+            "excerpt": "If you're thinking about selling your home in the near future, it's important to know which renovations will give you the best return on investment. In this blog post, we'll share the top renovations that can help maximize your home's value, including updating your kitchen, adding curb appeal, and finishing your basement. We'll also discuss how to prioritize your renovations based on your budget and timeline.",
+            "image": "assets/images/demo/blog-post-4.jpg"
+        },
+        {
+            "title": "The Benefits of Working with a Real Estate Agent",
+            "published_at": "2023-03-20 11:10:00",
+            "slug": "post",
+            "excerpt": "Buying or selling a home is a complex process that can benefit from the expertise of a real estate agent. In this blog post, we'll discuss the benefits of working with a real estate agent, including their knowledge of the local market, their negotiating skills, and their ability to handle the paperwork and legal aspects of the transaction.",
+            "image": "assets/images/demo/blog-post-5.jpg"
+        },
+        {
+            "title": "Understanding Home Appraisals: What You Need to Know",
+            "published_at": "2023-03-25 11:10:00",
+            "slug": "post",
+            "excerpt": "When buying or selling a home, an appraisal is an important step in determining its value. In this blog post, we'll explain what a home appraisal is, how it's conducted, and what factors are taken into consideration. We'll also discuss how to prepare for a home appraisal and how to handle any discrepancies in the valuation.",
+            "image": "assets/images/demo/blog-post-6.jpg"
+        }
+    ],
+    "advantages": [
+        {
+            "title": "Easy Property Search",
+            "text": "Find your dream home with ease using our advanced search filters.",
+            "icon": "search"
+        },
+        {
+            "title": "Expert Agents",
+            "text": "Our experienced agents will guide you through every step of the home-buying process.",
+            "icon": "agent"
+        },
+        {
+            "title": "Wide Range of Properties",
+            "text": "Choose from a vast selection of properties to find the one that suits your needs.",
+            "icon": "property"
+        },
+        {
+            "title": "Accurate Home Valuations",
+            "text": "Get a precise estimate of your home's value using our expert appraisal services.",
+            "icon": "rating"
+        },
+        {
+            "title": "Real-Time Updates",
+            "text": "Stay up-to-date with the latest property listings and market trends.",
+            "icon": "update"
+        },
+        {
+            "title": "User-Friendly Interface",
+            "text": "Easily navigate our site and find the information you need with our intuitive interface.",
+            "icon": "interface"
+        }
+    ],
+    "pages": {
+        "home": {
+            "meta_title": "Welcome to Your Dream Home in New York City",
+            "meta_description": "Find your dream home today! Browse through our wide selection of properties in New York, from apartments to luxury homes. Get started now!",
+            "meta_keywords": "real estate, New York properties, homes for sale, apartments, condos, luxury homes, affordable homes, property listings, real estate market, NY neighborhoods"
+        },
+        "404": {
+            "meta_title": "404 Error - Page Not Found",
+            "meta_description": "Oops! The page you were looking for couldn't be found. Please check the URL and try again.",
+            "meta_keywords": "404, error, page not found, website error"
+        },
+        "about_us": {
+            "meta_title": "About Us - Real Estate Agency",
+            "meta_description": "Learn more about our real estate agency and our team of experts. Find out how we can help you buy or sell your dream property today.",
+            "meta_keywords": "about us, real estate agency, team, experts, buy, sell, dream property",
+            "title": "About us",
+            "content": "<p>Welcome to our real estate agency! We are a team of dedicated professionals who are passionate about helping our clients find their dream home. With years of experience in the industry, we have a deep understanding of the local real estate market and are committed to providing top-notch service to our clients.</p><p>Whether you are looking to buy, sell, or rent a property, we are here to help. Our team of experts will work closely with you to understand your unique needs and preferences, and will guide you through every step of the process to ensure a seamless experience. We pride ourselves on our attention to detail and our commitment to providing personalized, high-quality service.</p>\n\n<p>At our agency, we believe that buying or selling a home should be a positive and rewarding experience. That's why we go above and beyond to make sure that our clients are fully satisfied with the outcome of their transaction. We are dedicated to building long-term relationships with our clients and are always here to provide support and guidance, even after the sale has been completed.</p><p>If you are in the market for a new home, or if you are interested in selling your current property, we would love to hear from you. Contact us today to schedule a consultation and learn more about how we can help you achieve your real estate goals.</p>"
+        },
+        "contact_us": {
+            "meta_title": "Contact Us - Get in Touch with Our Real Estate Experts",
+            "meta_description": "Get in touch with our real estate experts to learn more about our services and properties. Contact us today and start your journey to finding your dream home.",
+            "meta_keywords": "contact us, real estate, properties, experts, services",
+            "title": "Contact us"
+        },
+        "listings": {
+            "meta_title": "Properties Listings - Find your dream home",
+            "meta_description": "Browse our listings of available properties and find your dream home. We offer a wide variety of homes and apartments for sale and rent.",
+            "meta_keywords": "properties, listings, real estate, homes for sale, homes for rent, apartments for rent",
+            "title": "Listings"
+        },
+        "listings_details": {
+            "meta_title": "Cozy 2-Bedroom Apartment in Downtown - Real Estate Site",
+            "meta_description": "Check out the details of our cozy 2-bedroom apartment in downtown. Contact us to schedule a viewing today!",
+            "meta_keywords": "Cozy apartment, 2-bedroom apartment, Downtown apartment, Real estate listing",
+            "title": "Cozy 2-Bedroom Apartment in Downtown"
+        },
+        "news": {
+            "meta_title": "Latest News - Real Estate Site",
+            "meta_description": "Stay up-to-date with the latest news and developments in the real estate industry. Find out about market trends, property insights, and more on our news page.",
+            "meta_keywords": "real estate news, property news, industry updates, market trends, property insights",
+            "title": "News"
+        },
+        "news_details": {
+            "meta_title": "Top 5 Tips for First-Time Homebuyers",
+            "meta_description": "Learn the top 5 tips for first-time homebuyers to make the process smoother and easier. From finding the right agent to getting pre-approved for a mortgage, we've got you covered.",
+            "meta_keywords": "homebuyers, first-time homebuyers, tips, real estate, mortgage, agent",
+            "title": "Top 5 Tips for First-Time Homebuyers"
+        },
+        "team": {
+            "meta_title": "Meet Our Team - Real Estate Site",
+            "meta_description": "Learn more about our team of experienced and dedicated real estate professionals. Our team members are experts in the local market and are here to help you with all your real estate needs.",
+            "meta_keywords": "real estate, team, professionals, local market, experts",
+            "title": "Team"
+        },
+        "team_details": {
+            "meta_title": "Rachel Cooper - Real Estate Agent",
+            "meta_description": "Learn more about Rachel Cooper, experienced real estate agent in New York. View her listings and find your dream home.",
+            "meta_keywords": "Rachel Cooper, real estate agent, New York, listings, dream home",
+            "title": "Rachel Cooper"
+        }
+    }
+}

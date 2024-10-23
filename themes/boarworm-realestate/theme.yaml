@@ -1,0 +1,101 @@
+name: Real estate
+description: OctoberCMS Real Estate Tailwind theme.
+author: Boarworm
+homepage: https://web-tip.top
+authorCode: Boarworm
+code: realestate
+parent: ''
+database: '0'
+
+form:
+    tabs:
+        fields:
+            site_name:
+                label: Site name
+                tab: General
+                default: My Amazing Site!
+            site_logo:
+                label: Site logo
+                tab: General
+                type: mediafinder
+                mode: image
+            copyright:
+                label: Copyright
+                tab: Footer
+                default: Real estate company. All rights reserved.
+            socials:
+                tab: Social Links
+                type: repeater
+                form:
+                    fields:
+                        code:
+                            label: Code
+                            span: auto
+                            comment: Code is svg icon ID
+                        url:
+                            label: URL
+                            span: auto
+                default: '[{"code":"facebook","url":"#"},{"code":"instagram","url":"#"},{"code":"twitter","url":"#"},{"code":"linkedin","url":"#"}]'
+            contact_phones:
+                tab: Contacts
+                label: Phones
+                type: repeater
+                form:
+                    fields:
+                        phone:
+                            label: Phone
+                            span: auto
+                        description:
+                            label: Description
+                            span: auto
+                default: '[{"phone":"+1 (212) 123-4567","description":"main office"},{"phone":"+1 (212) 765-4321","description":"sales department"}]'
+            contact_emails:
+                tab: Contacts
+                label: Emails
+                type: repeater
+                form:
+                    fields:
+                        email:
+                            label: Email
+                            span: auto
+                        description:
+                            label: Description
+                            span: auto
+                default: '[{"email":"gmanager@site.com","description":"general manager"},{"email":"salesmanager@site.com","description":"sales manager"}]'
+            contact_addresses:
+                tab: Contacts
+                label: Addresses
+                type: repeater
+                form:
+                    fields:
+                        address:
+                            label: Address
+                            span: auto
+                        description:
+                            label: Description
+                            span: auto
+                default: '[{"address":"123 Main St, New York, NY 10001","description":"main office"}]'
+            section_code:
+                label: "Code placeholders will be displayed only if environment set to 'prod'"
+                tab: Template placeholders
+                type: section
+            code_head_start:
+                tab: Template placeholders
+                label: Code after <head>
+                type: codeeditor
+                span: auto
+            code_head_end:
+                tab: Template placeholders
+                label: Code before </head>
+                type: codeeditor
+                span: auto
+            code_body_start:
+                tab: Template placeholders
+                label: Code after <body>
+                type: codeeditor
+                span: auto
+            code_body_end:
+                tab: Template placeholders
+                label: Code before </body>
+                type: codeeditor
+                span: auto

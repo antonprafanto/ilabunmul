@@ -1,0 +1,119 @@
+title = "Team details"
+layout = "default"
+url = "/team/:slug"
+==
+{% set agentProperties = demoData.listings|slice(1,4) %}
+{% set page = demoData.pages.team_details %}
+{% put meta %}
+{% partial "meta/meta"
+    title = page.meta_title
+    description = page.meta_description
+    keywords = page.meta_keywords
+    og_image_1200_630 = ""
+    og_image_1200_1200 = "" %}
+{% endput %}
+{% set breadcrumbs = [
+    {'name':'Our team','url':'team'|page() },
+    {'name':'Rachel Cooper','url':'' }
+] %}
+<div class="container py-10">
+    <div class="mb-8">
+        {% partial "headline/headline"
+            cssClasses = "mb-2"
+            tag = "h1"
+            color = ""
+            size = "h1"
+            text = 'Rachel Cooper' %}
+        {% partial "breadcrumbs/breadcrumbs"
+            cssClasses = ""
+            breadcrumbs = breadcrumbs %}
+    </div>
+    <div class="mb-6 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-[minmax(0,448px)_minmax(0,1fr)] lg:gap-16">
+        <div class="">
+            {% partial "image/image"
+                cssClasses = "mb-4 max-w-md m-auto"
+                imgcssClasses = "w-full h-auto"
+                src = "assets/images/demo/team-member-8.jpg"|theme
+                resize =
+                {
+                    'width':'448',
+                    'height':'448',
+                    'mode':'crop',
+                    'extension':'',
+                    'quality':''
+                }
+                attributes =
+                {
+                    'alt' : this.page.title
+                } %}
+            {% partial "socials/socials"
+                cssClasses = ""
+                socials = {
+                "facebook" : "https://facebook.com",
+                "instagram" : "https://instagram.com",
+                "twitter" : "https://twitter.com",
+                "linkedin" : "https://linkedin.com"
+            } %}
+        </div>
+        <div class="">
+            {% partial "headline/headline"
+                cssClasses = "mb-6"
+                tag = "h2"
+                color = ""
+                size = "h2"
+                text = "Contact agent" %}
+            {% partial "form-contact-agent/form-contact-agent"
+                cssClasses = "lg:max-w-lg"
+            %}
+        </div>
+    </div>
+    {% partial "headline/headline"
+        cssClasses = "mb-6"
+        tag = "h2"
+        color = ""
+        size = "h2"
+        text = "About Agent" %}
+    <div class="prose mb-6">
+        <p>Rachel Cooper is a dedicated and passionate Real Estate Agent with over 5 years of experience in the industry.</p>
+        <p>She has a strong understanding of the local market and uses her knowledge to help clients make informed decisions. Rachel's excellent communication skills and attention to detail allow her to provide exceptional service to both buyers and sellers. She is committed to helping her clients achieve their real estate goals and is always willing to go the extra mile to ensure their success. Whether you're looking to buy, sell, or rent a property, Rachel is the agent to trust for all your real estate needs</p>
+    </div>
+    {% partial "headline/headline"
+        cssClasses = "mb-6"
+        tag = "h2"
+        color = ""
+        size = "h2"
+        text = "Rachel Cooper Properties" %}
+    <div class="grid gap-y-8 gap-x-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        {% for listing in agentProperties %}
+            {% partial "card-listing/card-listing"
+                cssClasses = ""
+                title = listing.title
+                url = "listings-details"|page({ slug: listing.slug })
+                contract_type = listing.contract_type
+                address = listing.address
+                status = listing.status
+                price = "$"~listing.price|number_format(0,'.',',')
+                lot_size = listing.lot_size~" SqFt"
+                bedrooms = listing.bedrooms
+                bathrooms = listing.bathrooms
+                image =
+                {
+                    imgCssClasses: "",
+                    src: listing.image|theme,
+                    attributes:
+                    {
+                        "alt": listing.title
+                    },
+                    resize:
+                    {
+                        'width':'640',
+                        'height':'360',
+                        "mode": "crop",
+                        "extension": "",
+                        "quality": ""
+                    }
+                }
+            %}
+        {% endfor %}
+    </div>
+</div>

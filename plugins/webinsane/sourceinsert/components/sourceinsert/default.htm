@@ -1,0 +1,23 @@
+<script type="text/javascript">
+    function sourceInserter() {
+        var body_element = document.getElementsByTagName('body')[0];
+        var selection;
+        selection = window.getSelection();
+        {% if __SELF__.property('smarturl') == 1 %}
+        var pagelink = "<br /><br /> {{ __SELF__.property('source') }} <a href='"+document.location.href+"'>"+document.location.href+"</a><br />{{ __SELF__.property('copyright') }}";
+        {%else%}
+        var pagelink = "<br /><br /> {{ __SELF__.property('source') }} <a href='{{ __SELF__.property('simpleurl') }}'>{{ __SELF__.property('simpleurl') }}</a><br />{{ __SELF__.property('copyright') }}";
+        {%endif%}
+        var copytext = selection + pagelink;
+        var newdiv = document.createElement('div');
+        newdiv.style.position='absolute';
+        newdiv.style.left='-99999px';
+        body_element.appendChild(newdiv);
+        newdiv.innerHTML = copytext;
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function() {
+            body_element.removeChild(newdiv);
+        },0);
+    }
+    document.oncopy = sourceInserter;
+</script>

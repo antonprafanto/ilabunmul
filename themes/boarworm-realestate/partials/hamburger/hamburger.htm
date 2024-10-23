@@ -1,0 +1,30 @@
+{# themedoc
+[/themedoc-section-name/]: # (Hamburger)
+
+[/themedoc-section/]:
+
+### Dependencies
+* JavaScript
+
+### Variables
+* {string} **cssClasses** - component css class list.
+
+### Usage
+{% verbatim %}
+    {% partial "hamburger/hamburger"
+        cssClasses = "js-mobile-menu-trigger md:hidden"
+    %}
+{% endverbatim %}
+
+### Examples
+{% partial "hamburger/hamburger"
+    cssClasses = "not-prose"
+%}
+#}
+
+<div class="cursor-pointer relative w-10 h-7 grid gap-2 {{ cssClasses }}">
+    <input type="checkbox" class="peer absolute z-10 w-full h-full opacity-0">
+    <div class="w-full relative h-1 bg-primary transition top-0 peer-checked:rotate-45 peer-checked:top-[12px]"></div>
+    <div class="w-full relative h-1 bg-primary transition peer-checked:invisible"></div>
+    <div class="w-full relative h-1 bg-primary transition bottom-0 peer-checked:-rotate-45 peer-checked:bottom-[12px]"></div>
+</div>

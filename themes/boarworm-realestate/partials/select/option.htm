@@ -1,0 +1,6 @@
+    {% if emptyOption %}
+        <option value="{{ emptyOption.value }}" {% if default == option.value %} selected="selected" {% endif %}>{{ emptyOption.name }}</option>
+    {% endif %}
+    {% for option in options %}
+        <option value="{{ option.value }}" {% if default == option.value %} selected="selected" {% endif %}>{{ option.name }}</option>
+    {% endfor %}

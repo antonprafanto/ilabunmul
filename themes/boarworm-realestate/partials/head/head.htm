@@ -1,0 +1,24 @@
+{# themedoc
+[/themedoc-section-name/]: # (Head)
+
+[/themedoc-section/]:
+Site head.
+
+### Usage
+{% verbatim %}
+    {% partial "head/head" %}
+{% endverbatim %}
+#}
+
+<head>
+	{{ this.environment == 'prod' ? this.theme.code_head_start|raw }}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    {% placeholder meta %}
+    {% partial "favicons/favicons" %}
+	<link rel="stylesheet" href="{{ ['assets/dist/css/app.css']|theme }}">
+    {% styles %}
+	{{ this.environment == 'prod' ? this.theme.code_head_end|raw }}
+</head>

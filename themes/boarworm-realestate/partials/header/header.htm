@@ -1,0 +1,49 @@
+{#themedoc
+[/themedoc-section-name/]: # (Header)
+
+[/themedoc-section/]:
+Site header.
+
+### Dependencies
+* [menu-main](#menu-main)
+* [menu-mobile](#menu-mobile)
+* [hamburger](#hamburger)
+
+### Variables:
+* {string} **cssClasses** - list of additional css classes.
+
+### Usage example:
+{% verbatim %}
+    {% partial "header/header"
+        cssClasses = ""
+    %}
+{% endverbatim %}
+#}
+
+{% set mainNavigation = demoData.navigation.main %}
+
+<header id="header" class="js-header bg-white transition-all duration-1000 ease-in-out sticky top-0 w-full z-40 drop-shadow-lg {{ cssClasses }}">
+    <div class="container flex justify-between items-center md:items-end">
+        <div class="self-center">
+            <a href="{{ 'home'|page }}">
+                <img class="w-full max-w-[220px] js-header-logo transition-all py-2 lg:max-w-[300px]" src="{{ this.theme.site_logo ? this.theme.site_logo|media : 'assets/images/logo.svg'|theme }}" alt="{{ this.theme.site_name }}" title="{{ this.theme.site_name }}">
+            </a>
+        </div>
+        <div class="flex flex-col grow items-end">
+            {% partial "menu-main/menu-main"
+                cssClasses="hidden md:flex"
+                maxLevel = 2
+                items = mainNavigation %}
+            {% partial "hamburger/hamburger"
+                cssClasses = "js-mobile-menu-trigger md:hidden"
+            %}
+        </div>
+    </div>
+</header>
+{% partial "menu-mobile/menu-mobile"
+    cssClasses="js-mobile-menu"
+    id="mobile-menu"
+    menuItems=mainNavigation
+    menuClass=""
+    maxLevel=1
+    showDropdownTrigger=0 %}

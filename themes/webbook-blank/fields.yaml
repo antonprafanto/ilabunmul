@@ -1,0 +1,82 @@
+tabs:
+    fields:
+        site_title:
+            label: Title
+            default: New webpage
+            span: row
+            spanClass: "col-sm-6 p-l-0"
+
+        site_subtitle:
+            label: Subtitle
+            default: by My Company
+            span: row
+            spanClass: "col-sm-6 p-l-0"
+
+        site_link:
+            label: Link
+            default: https://google.com
+            span: row
+            spanClass: "col-sm-6 p-l-0"
+
+        site_copy:
+            label: Copyright
+            default: My Company Ltd.
+            span: row
+            spanClass: "col-sm-6 p-l-0"
+
+        bg_image:
+            label: Background image
+            type: fileupload
+            mode: image
+            fileTypes: jpg,jpeg,bmp,png,webp,gif,svg
+            imageWidth: 240
+            imageHeight: 90
+            span: row
+            spanClass: "col-sm-6"
+
+        site_logo:
+            label: Logo image
+            comment: Please use transparent image
+            type: fileupload
+            mode: image
+            fileTypes: jpg,jpeg,bmp,png,webp,gif,svg
+            imageWidth: 240
+            imageHeight: 90
+            span: row
+            spanClass: "col-sm-2"
+
+        logo_width:
+            label: Logo width
+            default: 350px
+            span: row
+            spanClass: "col-sm-2 p-l-0"
+
+        logo_switch:
+            label: Replace Name with logo
+            type: switch
+            span: row
+            spanClass: "col-sm-2"
+
+        background_color:
+            label: Background Colour
+            type: colorpicker
+            default: '#212529'
+            availableColors: ['#080808', '#101010','#181818', '#202020', '#282828', '#303030', '#383838','#404040','#484848','#505050','#585858','#606060','#686868','#707070','#787878','#808080']
+            span: row
+            spanClass: "col-sm-6"
+
+        text_color:
+            label: Text Colour
+            type: colorpicker
+            default: '#ffffff'
+            availableColors: ['#F8F8F8', '#F0F0F0', '#E8E8E8', '#E0E0E0', '#D8D8D8', '#D0D0D0', '#C8C8C8', '#C0C0C0', '#B8B8B8', '#B0B0B0', '#A8A8A8 ', '#A0A0A0', '#989898', '#909090', '#888888', '#808080']
+            span: row
+            spanClass: "col-sm-6"
+
+        link_color:
+            label: Link Colour
+            type: colorpicker
+            default: '#dee2e6'
+            span: row
+            spanClass: "col-12"
+

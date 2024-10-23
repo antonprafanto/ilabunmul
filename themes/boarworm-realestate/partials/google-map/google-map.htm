@@ -1,0 +1,18 @@
+{% if lat_lng %}
+    {% set latLng = lat_lng|split(',') %}
+    {% set lat = latLng[0] %}
+    {% set lng = latLng[1] %}
+    <div id="{{ id }}" class="flex justify-center items-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-sky-200 {{ cssClasses }}">
+        {% partial "button/button"
+            cssClasses = ""
+            tag = "button"
+            body = "Show on map"
+            size = "xl"
+            color = "secondary"
+            variant = ""
+            attributes = {
+            'type':'button',
+            'onclick':'initMap('~id~','~lat~','~lng~');this.style.display = "none"'
+        } %}
+    </div>
+{% endif %}
